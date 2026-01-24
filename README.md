@@ -1,0 +1,2 @@
+# mental
+disini ya masukinnya

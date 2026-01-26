@@ -24,9 +24,8 @@ btn.addEventListener("click", () => {
   if (running) return;
   running = true;
 
-  btn.textContent = "Bernapas...";
-
   // TARIK — 4
+  btn.textContent = "Tarik Napas";
   label.textContent = "Tarik";
   circle.classList.remove("exhale");
   circle.classList.add("inhale");
@@ -34,12 +33,14 @@ btn.addEventListener("click", () => {
 
   setTimeout(() => {
     // TAHAN — 7
-    circle.classList.remove("inhale");
+    btn.textContent = "Tahan";
     label.textContent = "Tahan";
+    circle.classList.remove("inhale");
     countdown(7);
 
     setTimeout(() => {
       // BUANG — 8
+      btn.textContent = "Buang Napas";
       label.textContent = "Buang";
       circle.classList.add("exhale");
       countdown(8);
@@ -47,9 +48,9 @@ btn.addEventListener("click", () => {
       setTimeout(() => {
         // SELESAI
         circle.classList.remove("exhale");
+        btn.textContent = "Mulai";
         label.textContent = "Selesai";
         count.textContent = "✓";
-        btn.textContent = "Mulai";
         running = false;
       }, 8000);
     }, 7000);

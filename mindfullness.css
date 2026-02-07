@@ -23,9 +23,11 @@
   font-family: "Times New Roman", Times, serif;
 }
 .font2 {
+  display: flex;
   justify-content: center;
   text-align: center;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   color: black;
   font-style: bold;
   font-family: "Times New Roman", Times, serif;
@@ -50,4 +52,22 @@
   background: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   line-height: 1.6;
+}
+
+.box-text {
+  font-size: 50px;
+}
+
+a.box {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+a.box:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }

@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoodMoo</title>
     <style>
+        :root {
+            --color-stroke-gray: #e0e0e0;
+            --color-primary-blue: #6B7FDB;
+            --color-heading-dark: #2D3748;
+            --color-text-brown: #5a5a5a;
+            --color-hotline-pink: #FF6B9D;
+            --color-hotline-red: #E53935;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -225,7 +234,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #1D1D1F;
+            color: #ffffff;
             font-weight: 500;
             position: relative;
             transition: color 0.3s ease;
@@ -1048,28 +1057,66 @@
                 top: 0;
                 left: 0;
                 width: 100%;
-                background: rgba(255, 255, 255, 1);
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
                 transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
                 z-index: 1000;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px 50px;
             }
 
+        #navbar.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.7);
+        }
+
         .nav-left {
+            position: absolute;
+            left: 50px;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 20px;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-right {
+            position: absolute;
+            right: 50px;
         }
 
         .hamburger-menu {
-            display: none;
+            display: flex;
+            width: 50px;
+            height: 50px;
+            background: #6B7FDB;
+            border-radius: 12px;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(107, 127, 219, 0.3);
+        }
+
+        .hamburger-menu:hover {
+            background: #5A6EC9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(107, 127, 219, 0.4);
         }
 
         .hamburger-line {
             width: 24px;
             height: 3px;
-            background: #1F2937;
-            margin: 4px 0;
+            background: white;
+            border-radius: 2px;
             transition: all 0.3s ease;
         }
 
@@ -1089,7 +1136,104 @@
     flex-shrink: 0;
 }
 
+        /* Footer */
+        footer {
+            background: #1D1D1F;
+            color: white;
+            padding: 60px 50px 30px;
+        }
 
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #6B7FDB;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-section a {
+            color: #CCC;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #6B7FDB;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #999;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #6B7FDB;
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) scale(1);
+            }
+            25% {
+                transform: translateY(-30px) translateX(20px) scale(1.05);
+            }
+            50% {
+                transform: translateY(-15px) translateX(-15px) scale(0.95);
+            }
+            75% {
+                transform: translateY(-40px) translateX(10px) scale(1.02);
+            }
+        }
+        
         .nav-links {
             display: flex;
             align-items: center;
@@ -1150,6 +1294,7 @@
             }
         }
 
+
         #navbar {
                 background: rgba(255, 255, 255, 0.95);
                 transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
@@ -1160,6 +1305,114 @@
                 backdrop-filter: blur(10px);
                 box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
             }
+
+        /* Footer Styles */
+        .footer {
+            background-color: white;
+            border-top: 1px solid var(--color-stroke-gray);
+            padding: 50px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #6B7FDB;
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-section h4 {
+            color: #2D3748;
+            margin-bottom: 15px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .footer-section > p {
+            font-size: 13px;
+            color: #5a5a5a;
+            line-height: 1.6;
+        }
+
+        .footer-section h3 i {
+            color: #FF6B9D;
+            margin-right: 5px;
+        }
+
+        .quick-links,
+        .support-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quick-links a,
+        .support-links a {
+            text-decoration: none;
+            color: #5a5a5a;
+            font-size: 13px;
+            transition: color 0.3s ease;
+        }
+
+        .quick-links a:hover,
+        .support-links a:hover {
+            color: #6B7FDB;
+        }
+
+        .hotline-info {
+            font-size: 13px;
+            color: #5a5a5a;
+        }
+
+        .hotline-info p {
+            margin-bottom: 8px;
+        }
+
+        .hotline-info strong {
+            color: #E53935;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #e0e0e0;
+            padding-top: 20px;
+        }
+
+        .disclaimer {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+        }
+
+        .disclaimer strong {
+            color: #2D3748;
+        }
+
+        /* Footer Responsive */
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1180,25 +1433,25 @@
                 <a href="home.html" class="sidebar-menu-link">Home</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="edukasi.html" class="sidebar-menu-link">Edukasi Mental Health</a>
+                <a href="edukasi.html" class="sidebar-menu-link">Cerita Tentang Rasa</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="selfcare.html" class="sidebar-menu-link">Self Care Guide</a>
+                <a href="selfcare.html" class="sidebar-menu-link">Panduan Merawat Diri</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="stories.html" class="sidebar-menu-link">Inspiring story</a>
+                <a href="stories.html" class="sidebar-menu-link">Kisah Inspiratif</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">Visual Quotes</a>
+                <a href="#" class="sidebar-menu-link">Kutipan Bermakna</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="copingtools.html" class="sidebar-menu-link">Coping Tools</a>
+                <a href="copingtools.html" class="sidebar-menu-link">Latihan Meditasi</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">Resource Hub</a>
+                <a href="#" class="sidebar-menu-link">Ruang Dukungan</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">Mindfulness</a>
+                <a href="#" class="sidebar-menu-link">Teman Pulih</a>
             </li>
             <li class="sidebar-menu-item">
                 <a href="#" class="sidebar-menu-link">Sudut Cerita</a>
@@ -1217,18 +1470,18 @@
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </div>
+        </div>
+        
+        <div class="nav-center">
             <div class="logo">
                 <img src="sapi-imup.PNG" alt="Logo MoodMoo" class="logo-icon">
                 <span>MoodMoo</span>
             </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="#artikel">Artikel</a></li>
-            <li><a href="#akses-cepat">Akses Cepat</a></li>
-            <li><a href="#quotes">Inspirasi</a></li>
-            <li><a href="#hotline">Hotline</a></li>
-        </ul>
-        <a href="#hotline" class="cta-button">Nomor Darurat</a>
+        
+        <div class="nav-right">
+            <a href="tel:112" class="cta-button">Nomor Darurat</a>
+        </div>
     </nav>
 
     <!-- FACTS SECTION -->
@@ -1410,6 +1663,49 @@ Padahal tanpa penanganan, kondisi tertentu bisa memburuk dan mengganggu sekolah,
             </div>
         </div>
     </section>
+
+    
+   <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>MindCare</h3>
+                <p style="color: #999; line-height: 1.6;">Platform edukasi dan dukungan kesehatan mental untuk semua.</p>
+                <div class="social-links">
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="edukasi.html">Cerita Tentang Rasa</a></li>
+                    <li><a href="selfcare.html">Panduan Merawat Diri</a></li>
+                    <li><a href="#">Ruang Dukungan</a></li>
+                    <li><a href="copingtools.html">Latihan Meditasi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="stories.html">Kisah Inspiratif</a></li>
+                    <li><a href="#">Kutipan Bermakna</a></li>
+                    <li><a href="mindfullness.html">Teman Pulih</a></li>
+                    <li><a href="sudutcerita.html">Sudut Cerita</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Hotline Darurat</h3>
+                <ul>
+                    <li><a href="tel:112">Nomor Darurat: 112</a></li>
+                    <li><a href="tel:119">Sejiwa: 119</a></li>
+                    <li><a href="tel:1500567">Halo Kemenkes: 1500-567</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 MindCare. Platform edukasi dan dukungan kesehatan mental untuk semua.</p>
+        </div>
+    </footer>
+
 
     <script>
         // Facts Section Animation

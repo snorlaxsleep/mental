@@ -131,7 +131,7 @@
             backdrop-filter: blur(10px);
             padding: 20px 50px;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             z-index: 1000;
             transition: all 0.3s ease;
@@ -151,9 +151,22 @@
 
 
         .nav-left {
+            position: absolute;
+            left: 50px;
             display: flex;
             align-items: center;
             gap: 20px;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-right {
+            position: absolute;
+            right: 50px;
         }
 
         .hamburger-menu {
@@ -868,52 +881,7 @@
             }
         }
 
-        /* Quick Access Section */
-        .quick-access {
-            padding: 100px 50px;
-            background: #F8F9FE;
-        }
 
-        .quick-access h2 {
-            text-align: center;
-            font-size: 48px;
-            margin-bottom: 60px;
-            color: #1D1D1F;
-        }
-
-        .access-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .access-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid #E5E5E5;
-        }
-
-        .access-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 28px rgba(107, 127, 219, 0.15);
-        }
-
-        .access-icon {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
-
-        .access-card h3 {
-            font-size: 18px;
-            color: #1D1D1F;
-            font-weight: 600;
-        }
 
         /* Quotes Section */
         .quotes-section {
@@ -1260,7 +1228,6 @@
             }
 
             .welcome-section h2,
-            .quick-access h2,
             .quotes-section h2 {
                 font-size: 32px;
             }
@@ -1292,9 +1259,6 @@
                 font-size: 18px;
             }
 
-            .access-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
 
             .quotes-grid {
                 grid-template-columns: 1fr;
@@ -1305,7 +1269,6 @@
             }
 
             .welcome-section,
-            .quick-access,
             .quotes-section,
             .hotline-section,
             .tips-section,
@@ -1362,28 +1325,28 @@
         </div>
         <ul class="sidebar-menu">
             <li class="sidebar-menu-item">
-                <a href="home.html" class="sidebar-menu-link active">HOME</a>
+                <a href="home.html" class="sidebar-menu-link active">Home</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="edukasi.html" class="sidebar-menu-link">Edukasi Mental Health</a>
+                <a href="edukasi.html" class="sidebar-menu-link">Cerita Tentang Rasa</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="selfcare.html" class="sidebar-menu-link">Self Care Guide</a>
+                <a href="selfcare.html" class="sidebar-menu-link">Panduan Merawat Diri</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="stories.html" class="sidebar-menu-link">Inspiring story</a>
+                <a href="stories.html" class="sidebar-menu-link">Kisah Inspiratif</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">Visual Quotes</a>
+                <a href="#" class="sidebar-menu-link">Kutipan Bermakna</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="copingtools.html" class="sidebar-menu-link">Coping Tools</a>
+                <a href="copingtools.html" class="sidebar-menu-link">Latihan Meditasi</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">Resource Hub</a>
+                <a href="#" class="sidebar-menu-link">Ruang Dukungan</a>
             </li>
             <li class="sidebar-menu-item">
-                <a href="mindfullness.html" class="sidebar-menu-link">Mindfulness</a>
+                <a href="mindfullness.html" class="sidebar-menu-link">Teman Pulih</a>
             </li>
             <li class="sidebar-menu-item">
                 <a href="sudutcerita.html" class="sidebar-menu-link">Sudut Cerita</a>
@@ -1402,18 +1365,18 @@
                 <span class="hamburger-line"></span>
                 <span class="hamburger-line"></span>
             </div>
+        </div>
+        
+        <div class="nav-center">
             <div class="logo">
                 <img src="sapi-imup.PNG" alt="Logo MoodMoo" class="logo-icon">
                 <span>MoodMoo</span>
             </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="#artikel">Artikel</a></li>
-            <li><a href="#akses-cepat">Akses Cepat</a></li>
-            <li><a href="#quotes">Inspirasi</a></li>
-            <li><a href="#hotline">Hotline</a></li>
-        </ul>
-        <a href="#hotline" class="cta-button">Nomor Darurat</a>
+    
+        <div class="nav-right">
+            <a href="tel:112" class="cta-button">Nomor Darurat</a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
@@ -1442,7 +1405,7 @@
         
         
         <div class="interactive-cards">
-            <div class="interactive-card">
+            <a href="selfcare.html" class="interactive-card" style="text-decoration: none;">
                 <div class="card-icon-container">
                     <svg class="card-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <path d="M30 45 L40 35 L50 45 L60 30 L70 40" fill="none" stroke="#FFB340" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1454,8 +1417,8 @@
                     <h3>Kurangi stres</h3>
                 </div>
                 <div class="card-arrow">›</div>
-            </div>
-                <div class="interactive-card">
+            </a>
+                <a href="mindfullness.html" class="interactive-card" style="text-decoration: none;">
                 <div class="card-icon-container">
                     <svg class="card-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <path d="M35 45 Q30 35 40 30 L45 32 Q48 25 52 32 L57 30 Q67 35 62 45 Z" fill="#B4A0D8"/>
@@ -1468,9 +1431,9 @@
                     <h3>Tidur nyenyak</h3>
                 </div>
                 <div class="card-arrow">›</div>
-            </div>
+            </a>
 
-            <div class="interactive-card">
+            <a href="edukasi.html" class="interactive-card" style="text-decoration: none;">
                 <div class="card-icon-container">
                     <svg class="card-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="50" cy="50" r="32" fill="none" stroke="#4CABFF" stroke-width="5"/>
@@ -1483,9 +1446,9 @@
                     <h3>Atasi kecemasan</h3>
                 </div>
                 <div class="card-arrow">›</div>
-            </div>
+            </a>
 
-            <div class="interactive-card">
+            <a href="stories.html" class="interactive-card" style="text-decoration: none;">
                 <div class="card-icon-container">
                     <svg class="card-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="35" cy="40" r="10" fill="#FFB4C8" opacity="0.6"/>
@@ -1498,9 +1461,9 @@
                     <h3>Proses pikiran</h3>
                 </div>
                 <div class="card-arrow">›</div>
-            </div>
+            </a>
 
-            <div class="interactive-card">
+            <a href="copingtools.html" class="interactive-card" style="text-decoration: none;">
                 <div class="card-icon-container">
                     <svg class="card-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="50" cy="50" r="30" fill="#FF8534" opacity="0.8"/>
@@ -1512,9 +1475,9 @@
                     <h3>Latihan meditasi</h3>
                 </div>
                 <div class="card-arrow">›</div>
-            </div>
+            </a>
 
-            <div class="interactive-card">
+            <a href="sudutcerita.html" class="interactive-card" style="text-decoration: none;">
                 <div class="card-icon-container">
                     <svg class="card-icon-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
                         <path d="M35 50 Q35 35 50 35 Q65 35 65 50 Q65 65 50 70 Q35 65 35 50 Z" fill="#FFD93D"/>
@@ -1527,7 +1490,7 @@
                     <h3>Mulai terapi</h3>
                 </div>
                 <div class="card-arrow">›</div>
-            </div>
+            </a>
         </div>
     </section>
 
@@ -1571,33 +1534,12 @@
                 <h2><span class="highlight-blue">Teman Saat</span><br><span class="highlight-blue">Lelah</span></h2>
                 <p><span class="highlight-text">Saat pikiran terasa penuh dan emosi sulit diatur, musik bisa jadi teman yang menenangkan.
 Playlist ini dipilih untuk membantu kamu bernapas lebih lega dan merasa sedikit lebih ringan.</span></p>
-                <a href="#" class="white-btn">Dengarkan Playlist</a>
+                <a href="https://open.spotify.com/playlist/61sQJd38xiRyRtFYGwSS8Z?si=4Ws-c0KUQtChmVF3IFnS9g&pi=TyzUk6-OToiDb" class="white-btn">Dengarkan Playlist</a>
             </div>
         </div>
     </section>
 
-    <!-- Quick Access -->
-    <section class="quick-access" id="akses-cepat">
-        <h2>Akses Cepat</h2>
-        <div class="access-grid">
-            <div class="access-card">
-                <div class="access-icon">🧘‍♀️</div>
-                <h3>Mindfulness & Relaxation</h3>
-            </div>
-            <div class="access-card">
-                <div class="access-icon">🛠️</div>
-                <h3>Coping Tools</h3>
-            </div>
-            <div class="access-card">
-                <div class="access-icon">💬</div>
-                <h3>Visual Quotes</h3>
-            </div>
-            <div class="access-card">
-                <div class="access-icon">👨‍⚕️</div>
-                <h3>Konsultasi</h3>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Tips Section -->
     <section class="tips-section">
@@ -1657,27 +1599,24 @@ Playlist ini dipilih untuk membantu kamu bernapas lebih lega dan merasa sedikit 
                 <h3>MindCare</h3>
                 <p style="color: #999; line-height: 1.6;">Platform edukasi dan dukungan kesehatan mental untuk semua.</p>
                 <div class="social-links">
-                    <a href="#" class="social-icon">f</a>
-                    <a href="#" class="social-icon">t</a>
-                    <a href="#" class="social-icon">i</a>
                 </div>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Ruang Edukasi</a></li>
-                    <li><a href="#">Panduan Self-Care</a></li>
-                    <li><a href="#">Pusat Dukungan</a></li>
-                    <li><a href="#">Ruang Tenang</a></li>
+                    <li><a href="edukasi.html">Cerita Tentang Rasa</a></li>
+                    <li><a href="selfcare.html">Panduan Merawat Diri</a></li>
+                    <li><a href="#">Ruang Dukungan</a></li>
+                    <li><a href="copingtools.html">Latihan Meditasi</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Support</h3>
                 <ul>
-                    <li><a href="#">Cerita Inspiratif</a></li>
-                    <li><a href="#">Galeri Kutipan</a></li>
-                    <li><a href="#">Bantuan Praktis</a></li>
-                    <li><a href="#">Sudut Cerita</a></li>
+                    <li><a href="stories.html">Kisah Inspiratif</a></li>
+                    <li><a href="#">Kutipan Bermakna</a></li>
+                    <li><a href="mindfullness.html">Teman Pulih</a></li>
+                    <li><a href="sudutcerita.html">Sudut Cerita</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -1743,6 +1682,8 @@ Playlist ini dipilih untuk membantu kamu bernapas lebih lega dan merasa sedikit 
                 navbar.classList.remove('scrolled');
             }
         });
+
+
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

@@ -1,1551 +1,1245 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MoodMoo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="navbar.css" />
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            color: #1D1D1F;
-            overflow-x: hidden;
-        }
-
-        .logo-icon {
-            width: 45px;   /* coba 24px, 32px, 40px */
-            height: auto;  
-        }
-
-
-        /* Sidebar Navigation */
-        .sidebar-nav {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 320px;
-            height: 100vh;
-            background: white;
-            z-index: 2000;
-            transition: left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 2px 0 20px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-        }
-
-        .sidebar-nav.active {
-            left: 0;
-        }
-
-        .sidebar-header {
-            background: linear-gradient(135deg, #6B7FDB 0%, #5A6EC9 100%);
-            padding: 40px 30px;
-            color: white;
-        }
-
-        .sidebar-logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .sidebar-logo-icon {
-            font-size: 32px; /* Adjust the size of the sidebar logo */
-        }
-
-        .sidebar-tagline {
-            font-size: 14px;
-            opacity: 0.9;
-            font-weight: 400;
-        }
-
-        .sidebar-menu {
-            padding: 30px 0;
-        }
-
-        .sidebar-menu-item {
-            list-style: none;
-        }
-
-        .sidebar-menu-link {
-            display: block;
-            padding: 18px 30px;
-            color: #2C3E50;
-            text-decoration: none;
-            font-size: 18px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-        }
-
-        .sidebar-menu-link:hover {
-            background: #F8F9FE;
-            border-left-color: #6B7FDB;
-            color: #6B7FDB;
-            padding-left: 35px;
-        }
-
-        .sidebar-menu-link.active {
-            background: #F8F9FE;
-            border-left-color: #6B7FDB;
-            color: #6B7FDB;
-        }
-
-        .sidebar-footer {
-            padding: 30px;
-            border-top: 1px solid #E5E5E5;
-            text-align: center;
-            color: #999;
-            font-size: 13px;
-        }
-
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1500;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        #navbar {
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-        #navbar.scrolled {
-            background: rgba(255, 255, 255, 0.7);
-        }
-
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .hamburger-menu {
-            width: 50px;
-            height: 50px;
-            background: #6B7FDB;
-            border-radius: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(107, 127, 219, 0.3);
-        }
-
-        .hamburger-menu:hover {
-            background: #5A6EC9;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(107, 127, 219, 0.4);
-        }
-
-        .hamburger-line {
-            width: 24px;
-            height: 3px;
-            background: white;
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger-menu:hover .hamburger-line:nth-child(1),
-        .hamburger-menu:hover .hamburger-line:nth-child(3) {
-            width: 20px;
-        }
-
-        .hamburger-menu.active .hamburger-line:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-        }
-
-        .hamburger-menu.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger-menu.active .hamburger-line:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 24px;
-            font-weight: bold;
-            color: #6B7FDB;
-            cursor: pointer;
-        }
-
-        .logo-icon {
-            font-size: 28px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #1D1D1F;
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #6B7FDB;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a:hover {
-            color: #6B7FDB;
-        }
-
-        .cta-button {
-    background: linear-gradient(
-        135deg,
-        #fe6262 0%,
-        #FA6A6A 100%,
-        #FFF2F2 45%
-    );
-
-    color: white;
-    padding: 12px 30px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-
-    transition: all 0.3s ease;
-    box-shadow: 0 3px 6px rgba(245, 47, 47, 0.35);
-}
-
-.cta-button:hover {
-    background: linear-gradient(
-        135deg,
-        #E02424 0%,
-        #F52F2F 60%,
-        #FFDADA 100%
-    );
-
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(245, 47, 47, 0.45);
-}
-
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-        }
-
-        .logo-circle {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, #6B7FDB 0%, #7C8FE8 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 18px;
-        }
-
-        .logo-text {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: #6B7FDB;
-        }
-
-        /* FACTS SECTION */
-        .facts-section {
-            max-width: 1200px;
-            margin: auto;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .facts-section h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: #1F2937;
-            font-weight: 700;
-            margin-top: 100px; /* Adjust the value as needed to move it further down */
-        }
-
-        .facts-section .subtitle {
-            font-size: 1.2rem;
-            color: #6B7280;
-            margin-bottom: 4rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-card {
-            background: #F5F5F5;
-            border-radius: 24px;
-            padding: 3rem 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all .6s ease;
-            box-shadow: none;
-            border: none;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-card.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stat-card.show:hover {
-            transform: translateY(-8px);
-        }
-
-        .number-container {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2rem;
-        }
-
-        .number {
-            font-size: 6rem;
-            font-weight: 800;
-            color: #FF8534;
-            margin-bottom: 0;
-            transition: transform 0.3s ease;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stat-card:hover .number {
-            transform: scale(1.05);
-        }
-
-        /* Decorative shapes */
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            z-index: 0;
-        }
-
-        .shape-1 {
-            width: 40px;
-            height: 60px;
-            background: #4ECB71;
-            top: 0;
-            left: -25px;
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
-        }
-
-        .shape-2 {
-            width: 50px;
-            height: 50px;
-            background: #FFD93D;
-            top: 30%;
-            right: -25px;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-        }
-
-        .shape-3 {
-            width: 35px;
-            height: 35px;
-            background: #4CABFF;
-            bottom: 10%;
-            left: 10%;
-            border-radius: 50%;
-            transform: rotate(45deg);
-        }
-
-        .shape-4 {
-            width: 45px;
-            height: 45px;
-            background: #B4A0D8;
-            top: 10%;
-            right: 0;
-            border-radius: 50%;
-        }
-
-        .shape-5 {
-            width: 30px;
-            height: 30px;
-            background: #FF8BA7;
-            bottom: 0;
-            right: 20%;
-        }
-
-        .shape-6 {
-            width: 40px;
-            height: 40px;
-            background: #5AB9EA;
-            bottom: 20%;
-            left: -10px;
-            border-radius: 50%;
-        }
-
-        .shape-sparkle {
-            width: 25px;
-            height: 25px;
-            background: transparent;
-            position: absolute;
-        }
-
-        .shape-sparkle::before,
-        .shape-sparkle::after {
-            content: '';
-            position: absolute;
-            background: #FFD93D;
-        }
-
-        .shape-sparkle::before {
-            width: 3px;
-            height: 20px;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .shape-sparkle::after {
-            width: 20px;
-            height: 3px;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .sparkle-1 {
-            top: -10px;
-            right: 10%;
-        }
-
-        .sparkle-2 {
-            top: 20%;
-            right: -15px;
-        }
-
-        .lightning {
-            width: 30px;
-            height: 40px;
-            position: absolute;
-            top: 10%;
-            right: 5%;
-        }
-
-        .lightning::before {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 15px solid transparent;
-            border-right: 15px solid transparent;
-            border-top: 25px solid #4ECB71;
-            transform: rotate(20deg);
-        }
-
-        .moon {
-            width: 50px;
-            height: 50px;
-            background: #B4A0D8;
-            border-radius: 50%;
-            position: absolute;
-            top: 5%;
-            right: 0;
-            box-shadow: -10px 0 0 #8B7FB8 inset;
-        }
-
-        .title {
-            font-weight: 600;
-            margin-bottom: 1rem;
-            margin-top: 1rem;
-            color: #1F2937;
-            font-size: 1.1rem;
-            line-height: 1.5;
-        }
-
-        .source {
-            font-size: .85rem;
-            color: #9CA3AF;
-            text-decoration: underline;
-            transition: color 0.3s ease;
-        }
-
-        .stat-card:hover .source {
-            color: #6B7280;
-        }
-
-        /* Animation for cards */
-        .stat-card:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-
-        .stat-card:nth-child(2) {
-            transition-delay: 0.2s;
-        }
-
-        .stat-card:nth-child(3) {
-            transition-delay: 0.3s;
-        }
-
-        /* CAROUSEL SECTION */
-        .carousel-section {
-            background: white;
-            padding: 5rem 2rem;
-            margin-top: 3rem;
-        }
-
-        .carousel-header {
-            text-align: center;
-            margin-bottom: 60px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .carousel-section h2 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 20px;
-        }
-
-        .carousel-subtitle {
-            font-size: 1.25rem;
-            color: #4a4a4a;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            height: 600px;
-            perspective: 2000px;
-        }
-
-        .carousel-track {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .card {
-            position: absolute;
-            width: 380px;
-            height: 500px;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            padding: 30px;
-        }
-
-        .tag {
-            background: white;
-            padding: 10px 24px;
-            border-radius: 24px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            width: fit-content;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .phone-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .phone {
-            width: 280px;
-            height: 420px;
-            background: #1E3A8A;
-            border-radius: 32px;
-            padding: 12px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-            position: relative;
-        }
-
-        .phone-screen {
-            width: 100%;
-            height: 100%;
-            border-radius: 24px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .avatar-large {
-            width: 200px;
-            height: 280px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 16px;
-            margin-bottom: 20px;
-        }
-
-        .avatar-small {
-            width: 80px;
-            height: 80px;
-            background: #fff;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 16px;
-            left: 16px;
-            border: 4px solid #1E3A8A;
-        }
-
-        .session-text {
-            color: white;
-            text-align: center;
-        }
-
-        .session-text h3 {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-        }
-
-        .session-text p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        /* Card positions */
-        .card[data-position="0"] {
-            transform: translateX(-600px) translateZ(-400px) scale(0.75);
-            opacity: 0.5;
-            z-index: 1;
-        }
-
-        .card[data-position="1"] {
-            transform: translateX(-320px) translateZ(-200px) scale(0.85);
-            opacity: 0.7;
-            z-index: 2;
-        }
-
-        .card[data-position="2"] {
-            transform: translateX(0) translateZ(0) scale(1);
-            opacity: 1;
-            z-index: 3;
-        }
-
-        .card[data-position="3"] {
-            transform: translateX(320px) translateZ(-200px) scale(0.85);
-            opacity: 0.7;
-            z-index: 2;
-        }
-
-        .card[data-position="4"] {
-            transform: translateX(600px) translateZ(-400px) scale(0.75);
-            opacity: 0.5;
-            z-index: 1;
-        }
-
-        /* Card backgrounds */
-        .card-yellow { background: #FFC107; }
-        .card-orange { background: #FF6F00; }
-        .card-gray { background: #90A4AE; }
-        .card-pink { background: #F8BBD0; }
-        .card-purple { background: #E1BEE7; }
-        .card-green { background: #4CAF50; }
-
-        .nav-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: white;
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 28px;
-            cursor: pointer;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-            z-index: 100;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #1a1a1a;
-        }
-
-        .nav-button:hover {
-            background: #f5f5f5;
-            transform: translateY(-50%) scale(1.05);
-        }
-
-        .nav-button.left {
-            left: 20px;
-        }
-
-        .nav-button.right {
-            right: 20px;
-        }
-
-        .dots-container {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 60px;
-            align-items: center;
-        }
-
-        .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #d0d0d0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot.active {
-            background: #FF6F00;
-            width: 40px;
-            border-radius: 5px;
-        }
-
-        /* END-TO-END CARE SECTION */
-        .care-section {
-            background: #FAFAFA;
-            padding: 5rem 2rem;
-        }
-
-        .care-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-    
-
-        .care-header {
-            text-align: center;
-            margin-bottom: 4rem;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        color: #1d1d1f;
+        overflow-x: hidden;
+      }
+
+      /* FACTS SECTION */
+      .facts-section {
+        max-width: 1200px;
+        margin: auto;
+        padding: 4rem 2rem;
+        text-align: center;
+      }
+
+      .facts-section h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        color: #1f2937;
+        font-weight: 700;
+        margin-top: 100px; /* Adjust the value as needed to move it further down */
+      }
+
+      .facts-section .subtitle {
+        font-size: 1.2rem;
+        color: #6b7280;
+        margin-bottom: 4rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+      }
+
+      .stat-card {
+        background: #f5f5f5;
+        border-radius: 24px;
+        padding: 3rem 2rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+        box-shadow: none;
+        border: none;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .stat-card.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .stat-card.show:hover {
+        transform: translateY(-8px);
+      }
+
+      .number-container {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 2rem;
+      }
+
+      .number {
+        font-size: 6rem;
+        font-weight: 800;
+        color: #ff8534;
+        margin-bottom: 0;
+        transition: transform 0.3s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      .stat-card:hover .number {
+        transform: scale(1.05);
+      }
+
+      /* Decorative shapes */
+      .shape {
+        position: absolute;
+        border-radius: 50%;
+        z-index: 0;
+      }
+
+      .shape-1 {
+        width: 40px;
+        height: 60px;
+        background: #4ecb71;
+        top: 0;
+        left: -25px;
+        border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      }
+
+      .shape-2 {
+        width: 50px;
+        height: 50px;
+        background: #ffd93d;
+        top: 30%;
+        right: -25px;
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      }
+
+      .shape-3 {
+        width: 35px;
+        height: 35px;
+        background: #4cabff;
+        bottom: 10%;
+        left: 10%;
+        border-radius: 50%;
+        transform: rotate(45deg);
+      }
+
+      .shape-4 {
+        width: 45px;
+        height: 45px;
+        background: #b4a0d8;
+        top: 10%;
+        right: 0;
+        border-radius: 50%;
+      }
+
+      .shape-5 {
+        width: 30px;
+        height: 30px;
+        background: #ff8ba7;
+        bottom: 0;
+        right: 20%;
+      }
+
+      .shape-6 {
+        width: 40px;
+        height: 40px;
+        background: #5ab9ea;
+        bottom: 20%;
+        left: -10px;
+        border-radius: 50%;
+      }
+
+      .shape-sparkle {
+        width: 25px;
+        height: 25px;
+        background: transparent;
+        position: absolute;
+      }
+
+      .shape-sparkle::before,
+      .shape-sparkle::after {
+        content: "";
+        position: absolute;
+        background: #ffd93d;
+      }
+
+      .shape-sparkle::before {
+        width: 3px;
+        height: 20px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .shape-sparkle::after {
+        width: 20px;
+        height: 3px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .sparkle-1 {
+        top: -10px;
+        right: 10%;
+      }
+
+      .sparkle-2 {
+        top: 20%;
+        right: -15px;
+      }
+
+      .lightning {
+        width: 30px;
+        height: 40px;
+        position: absolute;
+        top: 10%;
+        right: 5%;
+      }
+
+      .lightning::before {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 25px solid #4ecb71;
+        transform: rotate(20deg);
+      }
+
+      .moon {
+        width: 50px;
+        height: 50px;
+        background: #b4a0d8;
+        border-radius: 50%;
+        position: absolute;
+        top: 5%;
+        right: 0;
+        box-shadow: -10px 0 0 #8b7fb8 inset;
+      }
+
+      .title {
+        font-weight: 600;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        color: #1f2937;
+        font-size: 1.1rem;
+        line-height: 1.5;
+      }
+
+      .source {
+        font-size: 0.85rem;
+        color: #9ca3af;
+        text-decoration: underline;
+        transition: color 0.3s ease;
+      }
+
+      .stat-card:hover .source {
+        color: #6b7280;
+      }
+
+      /* Animation for cards */
+      .stat-card:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+
+      .stat-card:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+
+      .stat-card:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+
+      /* CAROUSEL SECTION */
+      .carousel-section {
+        background: white;
+        padding: 5rem 2rem;
+        margin-top: 3rem;
+      }
+
+      .carousel-header {
+        text-align: center;
+        margin-bottom: 60px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .carousel-section h2 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 20px;
+      }
+
+      .carousel-subtitle {
+        font-size: 1.25rem;
+        color: #4a4a4a;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .carousel-container {
+        position: relative;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        height: 600px;
+        perspective: 2000px;
+      }
+
+      .carousel-track {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .card {
+        position: absolute;
+        width: 380px;
+        height: 500px;
+        border-radius: 24px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+      }
+
+      .tag {
+        background: white;
+        padding: 10px 24px;
+        border-radius: 24px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        width: fit-content;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .phone-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .phone {
+        width: 280px;
+        height: 420px;
+        background: #1e3a8a;
+        border-radius: 32px;
+        padding: 12px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        position: relative;
+      }
+
+      .phone-screen {
+        width: 100%;
+        height: 100%;
+        border-radius: 24px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .avatar-large {
+        width: 200px;
+        height: 280px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 16px;
+        margin-bottom: 20px;
+      }
+
+      .avatar-small {
+        width: 80px;
+        height: 80px;
+        background: #fff;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        border: 4px solid #1e3a8a;
+      }
+
+      .session-text {
+        color: white;
+        text-align: center;
+      }
+
+      .session-text h3 {
+        font-size: 1.1rem;
+        margin-bottom: 5px;
+      }
+
+      .session-text p {
+        font-size: 0.9rem;
+        opacity: 0.9;
+      }
+
+      /* Card positions */
+      .card[data-position="0"] {
+        transform: translateX(-600px) translateZ(-400px) scale(0.75);
+        opacity: 0.5;
+        z-index: 1;
+      }
+
+      .card[data-position="1"] {
+        transform: translateX(-320px) translateZ(-200px) scale(0.85);
+        opacity: 0.7;
+        z-index: 2;
+      }
+
+      .card[data-position="2"] {
+        transform: translateX(0) translateZ(0) scale(1);
+        opacity: 1;
+        z-index: 3;
+      }
+
+      .card[data-position="3"] {
+        transform: translateX(320px) translateZ(-200px) scale(0.85);
+        opacity: 0.7;
+        z-index: 2;
+      }
+
+      .card[data-position="4"] {
+        transform: translateX(600px) translateZ(-400px) scale(0.75);
+        opacity: 0.5;
+        z-index: 1;
+      }
+
+      /* Card backgrounds */
+      .card-yellow {
+        background: #ffc107;
+      }
+      .card-orange {
+        background: #ff6f00;
+      }
+      .card-gray {
+        background: #90a4ae;
+      }
+      .card-pink {
+        background: #f8bbd0;
+      }
+      .card-purple {
+        background: #e1bee7;
+      }
+      .card-green {
+        background: #4caf50;
+      }
+
+      .nav-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        border: none;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        font-size: 28px;
+        cursor: pointer;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        z-index: 100;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1a1a1a;
+      }
+
+      .nav-button:hover {
+        background: #f5f5f5;
+        transform: translateY(-50%) scale(1.05);
+      }
+
+      .nav-button.left {
+        left: 20px;
+      }
+
+      .nav-button.right {
+        right: 20px;
+      }
+
+      .dots-container {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 60px;
+        align-items: center;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #d0d0d0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .dot.active {
+        background: #ff6f00;
+        width: 40px;
+        border-radius: 5px;
+      }
+
+      /* END-TO-END CARE SECTION */
+      .care-section {
+        background: #fafafa;
+        padding: 5rem 2rem;
+      }
+
+      .care-container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .care-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .care-header h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+        line-height: 1.2;
+      }
+
+      .care-cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .care-card {
+        background: #f5f3f0;
+        border-radius: 16px;
+        padding: 3rem 2.5rem;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .care-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .care-card h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 2rem;
+        line-height: 1.3;
+        position: relative;
+        z-index: 2;
+      }
+
+      .care-card-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .care-card-content p {
+        color: #2d3748;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+        font-size: 1.05rem;
+      }
+
+      .care-card-content p strong {
+        font-weight: 600;
+      }
+
+      .learn-more {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #2d3748;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 1.05rem;
+        transition: gap 0.3s ease;
+      }
+
+      .learn-more:hover {
+        gap: 0.8rem;
+      }
+
+      .learn-more::after {
+        content: "→";
+        font-size: 1.2rem;
+      }
+
+      /* Hover effect background */
+      .care-card::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 0;
+        background: #ff8534;
+        transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 0;
+      }
+
+      .care-card:hover::before {
+        height: 100%;
+      }
+
+      /* Orange card special styling */
+      .care-card.orange {
+        background: #f5f3f0;
+      }
+
+      .care-card.orange::before {
+        background: #ff8534;
+      }
+
+      .care-card.orange h3,
+      .care-card.orange .care-card-content p,
+      .care-card.orange .learn-more {
+        color: #2d3748;
+      }
+
+      /* Circle decoration for orange card */
+      .care-card.orange::after {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: #ff8534;
+        border-radius: 50%;
+        top: 50%;
+        right: -250px;
+        transform: translateY(-50%) scale(0);
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1;
+        opacity: 0;
+      }
+
+      .care-card.orange:hover::after {
+        transform: translateY(-50%) scale(1);
+        opacity: 1;
+      }
+
+      @media (max-width: 1024px) {
+        .care-cards {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
         }
 
         .care-header h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #2D3748;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-
-        .care-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .care-card {
-            background: #F5F3F0;
-            border-radius: 16px;
-            padding: 3rem 2.5rem;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .care-card:hover {
-            transform: translateY(-5px);
+          font-size: 2.5rem;
         }
 
         .care-card h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #2D3748;
-            margin-bottom: 2rem;
-            line-height: 1.3;
-            position: relative;
-            z-index: 2;
+          font-size: 1.75rem;
         }
 
-        .care-card-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .care-card-content p {
-            color: #2D3748;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-            font-size: 1.05rem;
-        }
-
-        .care-card-content p strong {
-            font-weight: 600;
-        }
-
-        .learn-more {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #2D3748;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 1.05rem;
-            transition: gap 0.3s ease;
-        }
-
-        .learn-more:hover {
-            gap: 0.8rem;
-        }
-
-        .learn-more::after {
-            content: '→';
-            font-size: 1.2rem;
-        }
-
-        /* Hover effect background */
-        .care-card::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 0;
-            background: #FF8534;
-            transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 0;
-        }
-
-        .care-card:hover::before {
-            height: 100%;
-        }
-
-        /* Orange card special styling */
-        .care-card.orange {
-            background: #F5F3F0;
-        }
-
-        .care-card.orange::before {
-            background: #FF8534;
-        }
-
-        .care-card.orange h3,
-        .care-card.orange .care-card-content p,
-        .care-card.orange .learn-more {
-            color: #2D3748;
-        }
-
-        /* Circle decoration for orange card */
         .care-card.orange::after {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: #FF8534;
-            border-radius: 50%;
-            top: 50%;
-            right: -250px;
-            transform: translateY(-50%) scale(0);
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1;
-            opacity: 0;
+          width: 400px;
+          height: 400px;
+          right: -200px;
         }
+      }
 
-        .care-card.orange:hover::after {
-            transform: translateY(-50%) scale(1);
-            opacity: 1;
-        }
-
-        @media (max-width: 1024px) {
-            .care-cards {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .care-header h2 {
-                font-size: 2.5rem;
-            }
-
-            .care-card h3 {
-                font-size: 1.75rem;
-            }
-
-            .care-card.orange::after {
-                width: 400px;
-                height: 400px;
-                right: -200px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .care-section {
-                padding: 3rem 1.5rem;
-            }
-
-            .care-header h2 {
-                font-size: 2rem;
-            }
-
-            .care-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .care-card h3 {
-                font-size: 1.5rem;
-            }
-        }
-
-        /* END-TO-END CARE SECTION */
+      @media (max-width: 768px) {
         .care-section {
-            background: #FAFAFA;
-            padding: 5rem 2rem;
+          padding: 3rem 1.5rem;
         }
 
-        .care-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        
-
-        @media (max-width: 1200px) {
-            .card {
-                width: 320px;
-                height: 440px;
-            }
-
-            .phone {
-                width: 240px;
-                height: 360px;
-            }
-
-            .carousel-section h2 {
-                font-size: 2.5rem;
-            }
+        .care-header h2 {
+          font-size: 2rem;
         }
 
-        @media (max-width: 768px) {
-            .facts-section h1 {
-                font-size: 2.5rem;
-            }
-
-            .facts-section .subtitle {
-                font-size: 1rem;
-            }
-
-            .number {
-                font-size: 6rem;
-            }
-
-            .number-container {
-                margin-bottom: 1.5rem;
-            }
-
-            .shape {
-                transform: scale(0.8);
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .carousel-container {
-                height: 500px;
-            }
-
-            .card {
-                width: 280px;
-                height: 400px;
-            }
-
-            .card[data-position="0"],
-            .card[data-position="4"] {
-                display: none;
-            }
-
-            .card[data-position="1"] {
-                transform: translateX(-150px) translateZ(-100px) scale(0.8);
-            }
-
-            .card[data-position="3"] {
-                transform: translateX(150px) translateZ(-100px) scale(0.8);
-            }
-
-            .carousel-section h2 {
-                font-size: 2rem;
-            }
-
-            .carousel-subtitle {
-                font-size: 1rem;
-            }
+        .care-card {
+          padding: 2rem 1.5rem;
         }
 
-        /* Navigation */
+        .care-card h3 {
+          font-size: 1.5rem;
+        }
+      }
 
-        #navbar {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 1);
-                transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
-                z-index: 1000;
-            }
+      /* END-TO-END CARE SECTION */
+      .care-section {
+        background: #fafafa;
+        padding: 5rem 2rem;
+      }
 
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+      .care-container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 1200px) {
+        .card {
+          width: 320px;
+          height: 440px;
         }
 
-        .hamburger-menu {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
+        .phone {
+          width: 240px;
+          height: 360px;
         }
 
-        .hamburger-line {
-            width: 24px;
-            height: 3px;
-            background: #1F2937;
-            margin: 4px 0;
-            transition: all 0.3s ease;
+        .carousel-section h2 {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .facts-section h1 {
+          font-size: 2.5rem;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 300;
-            font-size: 1.5rem;
-            color: #6B7FDB;
+        .facts-section .subtitle {
+          font-size: 1rem;
         }
 
-        .sidebar-logo-img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-    flex-shrink: 0;
-}
-
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            list-style: none;
+        .number {
+          font-size: 6rem;
         }
 
-        .nav-links li {
-            position: relative;
+        .number-container {
+          margin-bottom: 1.5rem;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #1F2937;
-            font-weight: 500;
-            transition: color 0.3s ease;
+        .shape {
+          transform: scale(0.8);
         }
 
-        .nav-links a:hover {
-            color: #FF8534;
+        .grid {
+          grid-template-columns: 1fr;
         }
 
-        .cta-button {
-            background: #FF8534;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 24px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s ease;
+        .carousel-container {
+          height: 500px;
         }
 
-        .cta-button:hover {
-            background: #FF6F00;
+        .card {
+          width: 280px;
+          height: 400px;
         }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                padding: 1rem 0;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .nav-links.show {
-                display: flex;
-            }
-
-            .hamburger-menu {
-                display: flex;
-            }
+        .card[data-position="0"],
+        .card[data-position="4"] {
+          display: none;
         }
 
-        #navbar {
-                background: rgba(255, 255, 255, 0.95);
-                transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
-            }
+        .card[data-position="1"] {
+          transform: translateX(-150px) translateZ(-100px) scale(0.8);
+        }
 
-            #navbar.scrolled {
-                background: rgba(255, 255, 255, 0.7);
-                backdrop-filter: blur(10px);
-                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-            }
+        .card[data-position="3"] {
+          transform: translateX(150px) translateZ(-100px) scale(0.8);
+        }
+
+        .carousel-section h2 {
+          font-size: 2rem;
+        }
+
+        .carousel-subtitle {
+          font-size: 1rem;
+        }
+      }
     </style>
-</head>
-<body>
-   <!-- Sidebar Overlay -->
+  </head>
+  <body>
+    <nav id="navbar">
+      <div class="nav-left">
+        <div class="hamburger-menu" id="hamburgerMenu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </div>
+      </div>
+      <div class="logo">
+        <img src="sapi-imup.PNG" alt="Logo MoodMoo" class="logo-icon" />
+        <span>MoodMoo</span>
+      </div>
+      <ul class="nav-links"></ul>
+      <a href="#hotline" class="cta-button">Nomor Darurat</a>
+    </nav>
+
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <!-- Sidebar Navigation -->
     <div class="sidebar-nav" id="sidebarNav">
-        <div class="sidebar-header">
-            <div class="sidebar-logo">
-                <img src="sapi-imup.PNG" alt="Logo MoodMoo" class="sidebar-logo-img">
-                <span>MoodMoo</span>
-            </div>
-            <p class="sidebar-tagline">Teman Baik untuk Perasaanmu</p>
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <span class="sidebar-logo-icon">💙</span>
+          <span>MoodMoo</span>
         </div>
-        <ul class="sidebar-menu">
-            <li class="sidebar-menu-item">
-                <a href="home.html" class="sidebar-menu-link">Home</a>
-            </li>
-            <li class="sidebar-menu-item">
-                <a href="edukasi.html" class="sidebar-menu-link">Edukasi Mental Health</a>
-            </li>
-            <li class="sidebar-menu-item">
-                <a href="selfcare.html" class="sidebar-menu-link">Self Care Guide</a>
-            </li>
-            <li class="sidebar-menu-item">
-                <a href="stories.html" class="sidebar-menu-link">Inspiring story</a>
-            </li>
-            <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">Visual Quotes</a>
-            </li>
-            <li class="sidebar-menu-item">
-                <a href="copingtools.html" class="sidebar-menu-link">Coping Tools</a>
-            </li>
-            <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">Resource Hub</a>
-            </li>
-            <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">Mindfulness</a>
-            </li>
-            <li class="sidebar-menu-item">
-                <a href="#" class="sidebar-menu-link">Sudut Cerita</a>
-            </li>
-        </ul>
-        <div class="sidebar-footer">
-            ©Copyright MindCare 2026
-        </div>
+        <p class="sidebar-tagline">Teman Baik untuk Perasaanmu</p>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="home.html" class="sidebar-menu-link">HOME</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="edukasi.html" class="sidebar-menu-link active">
+            Edukasi Mental Health
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="selfcare.html" class="sidebar-menu-link">Self Care Guide</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="stories.html" class="sidebar-menu-link">Inspiring story</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#" class="sidebar-menu-link">Visual Quotes</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="coping tools.html" class="sidebar-menu-link">Coping Tools</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#" class="sidebar-menu-link">Resource Hub</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="mindfullness.html" class="sidebar-menu-link">Mindfulness</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="sudutcerita.html" class="sidebar-menu-link">Sudut Cerita</a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">©Copyright MindCare 2026</div>
     </div>
-
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-left">
-            <div class="hamburger-menu" id="hamburgerMenu">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </div>
-            <div class="logo">
-                <img src="sapi-imup.PNG" alt="Logo MoodMoo" class="logo-icon">
-                <span>MoodMoo</span>
-            </div>
-        </div>
-        <ul class="nav-links">
-            <li><a href="#artikel">Artikel</a></li>
-            <li><a href="#akses-cepat">Akses Cepat</a></li>
-            <li><a href="#quotes">Inspirasi</a></li>
-            <li><a href="#hotline">Hotline</a></li>
-        </ul>
-        <a href="#hotline" class="cta-button">Nomor Darurat</a>
-    </nav>
 
     <!-- FACTS SECTION -->
     <section class="facts-section">
-        <h1>Fakta yang Perlu Kita Tahu</h1>
-        <p class="subtitle">Sedikit angka tentang kesehatan mental, banyak makna di baliknya</p>
+      <h1>Fakta yang Perlu Kita Tahu</h1>
+      <p class="subtitle">
+        Sedikit angka tentang kesehatan mental, banyak makna di baliknya
+      </p>
 
-        <div class="grid">
-            <div class="stat-card" data-target="70">
-                <div class="number-container">
-                    <div class="number">0%</div>
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="shape shape-sparkle sparkle-1"></div>
-                </div>
-                <div class="title">Gangguan mental dimulai sebelum usia 24 tahun</div>
-                <div class="source">https://www.mentalhealth.org.uk/explore-mental-health/statistics/children-young-people-statistics</div>
-            </div>
-
-            <div class="stat-card" data-target="90">
-                <div class="number-container">
-                    <div class="number">0%</div>
-                    <div class="shape shape-3"></div>
-                    <div class="lightning"></div>
-                </div>
-                <div class="title">Kasus dapat diobati dengan pengobatan yang tepat</div>
-                <div class="source">Journal of Pediatric Nursing (Wylde, 2017)</div>
-            </div>
-
-            <div class="stat-card" data-target="7">
-                <div class="number-container">
-                    <div class="number">0</div>
-                    <div class="moon"></div>
-                    <div class="shape shape-5"></div>
-                    <div class="shape shape-sparkle sparkle-2"></div>
-                </div>
-                <div class="title">MindCare meningkatkan efisiensi tidur hanya dalam 7 hari</div>
-                <div class="source">Journal of Cognitive Enhancement (Kirk, 2021)</div>
-            </div>
+      <div class="grid">
+        <div class="stat-card" data-target="70">
+          <div class="number-container">
+            <div class="number">0%</div>
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-sparkle sparkle-1"></div>
+          </div>
+          <div class="title">Gangguan mental dimulai sebelum usia 24 tahun</div>
+          <div class="source">
+            https://www.mentalhealth.org.uk/explore-mental-health/statistics/children-young-people-statistics
+          </div>
         </div>
+
+        <div class="stat-card" data-target="90">
+          <div class="number-container">
+            <div class="number">0%</div>
+            <div class="shape shape-3"></div>
+            <div class="lightning"></div>
+          </div>
+          <div class="title">
+            Kasus dapat diobati dengan pengobatan yang tepat
+          </div>
+          <div class="source">Journal of Pediatric Nursing (Wylde, 2017)</div>
+        </div>
+
+        <div class="stat-card" data-target="7">
+          <div class="number-container">
+            <div class="number">0</div>
+            <div class="moon"></div>
+            <div class="shape shape-5"></div>
+            <div class="shape shape-sparkle sparkle-2"></div>
+          </div>
+          <div class="title">
+            MindCare meningkatkan efisiensi tidur hanya dalam 7 hari
+          </div>
+          <div class="source">
+            Journal of Cognitive Enhancement (Kirk, 2021)
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- CAROUSEL SECTION -->
     <section class="carousel-section">
-        <div class="carousel-header">
-            <h2>Mitos, Atau Fakta?</h2>
-            <p class="carousel-subtitle">Antara asumsi dan kenyataan di sekitar kita.</p>
-        </div>
+      <div class="carousel-header">
+        <h2>Mitos, Atau Fakta?</h2>
+        <p class="carousel-subtitle">
+          Antara asumsi dan kenyataan di sekitar kita.
+        </p>
+      </div>
 
-        <div class="carousel-container">
-            <div class="carousel-track" id="carouselTrack">
-                <!-- Card 1: EAP -->
-                <div class="card card-yellow" data-position="0">
-                    <span class="tag">Mitos</span>
-                    <div class="phone-container">
-                        <div class="phone" style="background: white;">
-                            <div class="phone-screen" style="background: white; color: #1a1a1a; padding: 20px;">
-                                <h3 style="margin-bottom: 10px;">Gangguan Mental Tanda Kecerdasan Rendah</h3>
-                                <p style="color: #666; font-size: 0.9rem;">Masih ada anggapan bahwa orang dengan masalah mental “kurang pintar”.
-Padahal tidak ada hubungan langsung antara kecerdasan dan gangguan mental. Banyak orang berprestasi juga mengalaminya.</p>
-                            </div>
-                        </div>
-                    </div>
+      <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Card 1: EAP -->
+          <div class="card card-yellow" data-position="0">
+            <span class="tag">Mitos</span>
+            <div class="phone-container">
+              <div class="phone" style="background: white">
+                <div
+                  class="phone-screen"
+                  style="background: white; color: #1a1a1a; padding: 20px"
+                >
+                  <h3 style="margin-bottom: 10px">
+                    Gangguan Mental Tanda Kecerdasan Rendah
+                  </h3>
+                  <p style="color: #666; font-size: 0.9rem">
+                    Masih ada anggapan bahwa orang dengan masalah mental “kurang
+                    pintar”. Padahal tidak ada hubungan langsung antara
+                    kecerdasan dan gangguan mental. Banyak orang berprestasi
+                    juga mengalaminya.
+                  </p>
                 </div>
-
-                <!-- Card 2: Therapy -->
-                <div class="card card-green" data-position="1">
-                    <span class="tag">Fakta</span>
-                    <div class="phone-container">
-                        <div class="phone" style="background: white;">
-                            <div class="phone-screen" style="background: white; color: #1a1a1a; padding: 20px;">
-                                <h3 style="margin-bottom: 10px;">Gangguan Mental Itu Umum Terjadi.</h3>
-                                <p style="color: #666; font-size: 0.9rem;">Masalah kesehatan mental bisa dialami siapa saja, di usia dan latar belakang apa pun. Kamu tidak sendirian, meski sering terasa begitu.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3: Coaching (Center) -->
-                <div class="card card-orange" data-position="2">
-                    <span class="tag">Mitos</span>
-                    <div class="phone-container">
-                        <div class="phone" style="background: white;">
-                            <div class="phone-screen" style="background: white; color: #1a1a1a; padding: 20px;">
-                                <h3 style="margin-bottom: 10px;">Orang dengan Gangguan Mental Berbahaya.</h3>
-                                <p style="color: #666; font-size: 0.9rem;">Label ini sering muncul karena film atau berita sensasional.
-Faktanya, sebagian besar penderita tidak berbahaya dan justru lebih sering menjadi korban diskriminasi dan kekerasan.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4: Psychiatry -->
-                <div class="card card-gray" data-position="3">
-                    <span class="tag">Mitos</span>
-                    <div class="phone-container">
-                        <div class="phone" style="background: white;">
-                            <div class="phone-screen" style="background: white; color: #1a1a1a; padding: 20px;">
-                                <h3 style="margin-bottom: 10px;">Gangguan Mental Bisa Sembuh Sendiri Kalau Diabaikan.</h3>
-                                <p style="color: #666; font-size: 0.9rem;">Banyak yang memilih diam dengan harapan “nanti juga hilang”.
-Padahal tanpa penanganan, kondisi tertentu bisa memburuk dan mengganggu sekolah, kerja, serta relasi sosial.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 5: Depression -->
-                <div class="card card-pink" data-position="4">
-                    <span class="tag">Fakta</span>
-                    <div class="phone-container">
-                        <div class="phone" style="background: white;">
-                            <div class="phone-screen" style="background: white; color: #1a1a1a; padding: 20px;">
-                                <h3 style="margin-bottom: 10px;">Edukasi Kesehatan Mental Bisa Menyelamatkan Banyak Orang</h3>
-                                <p style="color: #666; font-size: 0.9rem;">Pemahaman yang benar membantu kita lebih peka, lebih empatik, dan lebih cepat mencari bantuan sebelum masalah membesar</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
 
-            <button class="nav-button left" onclick="prevSlide()">‹</button>
-            <button class="nav-button right" onclick="nextSlide()">›</button>
+          <!-- Card 2: Therapy -->
+          <div class="card card-green" data-position="1">
+            <span class="tag">Fakta</span>
+            <div class="phone-container">
+              <div class="phone" style="background: white">
+                <div
+                  class="phone-screen"
+                  style="background: white; color: #1a1a1a; padding: 20px"
+                >
+                  <h3 style="margin-bottom: 10px">
+                    Gangguan Mental Itu Umum Terjadi.
+                  </h3>
+                  <p style="color: #666; font-size: 0.9rem">
+                    Masalah kesehatan mental bisa dialami siapa saja, di usia
+                    dan latar belakang apa pun. Kamu tidak sendirian, meski
+                    sering terasa begitu.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Coaching (Center) -->
+          <div class="card card-orange" data-position="2">
+            <span class="tag">Mitos</span>
+            <div class="phone-container">
+              <div class="phone" style="background: white">
+                <div
+                  class="phone-screen"
+                  style="background: white; color: #1a1a1a; padding: 20px"
+                >
+                  <h3 style="margin-bottom: 10px">
+                    Orang dengan Gangguan Mental Berbahaya.
+                  </h3>
+                  <p style="color: #666; font-size: 0.9rem">
+                    Label ini sering muncul karena film atau berita sensasional.
+                    Faktanya, sebagian besar penderita tidak berbahaya dan
+                    justru lebih sering menjadi korban diskriminasi dan
+                    kekerasan.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Psychiatry -->
+          <div class="card card-gray" data-position="3">
+            <span class="tag">Mitos</span>
+            <div class="phone-container">
+              <div class="phone" style="background: white">
+                <div
+                  class="phone-screen"
+                  style="background: white; color: #1a1a1a; padding: 20px"
+                >
+                  <h3 style="margin-bottom: 10px">
+                    Gangguan Mental Bisa Sembuh Sendiri Kalau Diabaikan.
+                  </h3>
+                  <p style="color: #666; font-size: 0.9rem">
+                    Banyak yang memilih diam dengan harapan “nanti juga hilang”.
+                    Padahal tanpa penanganan, kondisi tertentu bisa memburuk dan
+                    mengganggu sekolah, kerja, serta relasi sosial.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: Depression -->
+          <div class="card card-pink" data-position="4">
+            <span class="tag">Fakta</span>
+            <div class="phone-container">
+              <div class="phone" style="background: white">
+                <div
+                  class="phone-screen"
+                  style="background: white; color: #1a1a1a; padding: 20px"
+                >
+                  <h3 style="margin-bottom: 10px">
+                    Edukasi Kesehatan Mental Bisa Menyelamatkan Banyak Orang
+                  </h3>
+                  <p style="color: #666; font-size: 0.9rem">
+                    Pemahaman yang benar membantu kita lebih peka, lebih
+                    empatik, dan lebih cepat mencari bantuan sebelum masalah
+                    membesar
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="dots-container">
-            <div class="dot" onclick="goToSlide(0)"></div>
-            <div class="dot" onclick="goToSlide(1)"></div>
-            <div class="dot active" onclick="goToSlide(2)"></div>
-            <div class="dot" onclick="goToSlide(3)"></div>
-            <div class="dot" onclick="goToSlide(4)"></div>
-            <div class="avatar-indicator"></div>
-        </div>
+        <button class="nav-button left" onclick="prevSlide()">‹</button>
+        <button class="nav-button right" onclick="nextSlide()">›</button>
+      </div>
+
+      <div class="dots-container">
+        <div class="dot" onclick="goToSlide(0)"></div>
+        <div class="dot" onclick="goToSlide(1)"></div>
+        <div class="dot active" onclick="goToSlide(2)"></div>
+        <div class="dot" onclick="goToSlide(3)"></div>
+        <div class="dot" onclick="goToSlide(4)"></div>
+        <div class="avatar-indicator"></div>
+      </div>
     </section>
 
     <!-- END-TO-END CARE SECTION -->
     <section class="care-section">
-        <div class="care-container">
-            <div class="care-header">
-                <h2>Langkah Awal<br>Yang Bisa Kamu Ambil</h2>
-            </div>
-
-            <div class="care-cards">
-                <!-- Card 1: For employers -->
-                <div class="care-card">
-                    <h3>Tarik Jeda</h3>
-                    <div class="care-card-content">
-                        <p>Berhenti sebentar dari apa pun yang sedang dilakukan. Tarik napas perlahan dan beri tubuhmu waktu untuk tenang. Tidak semua hal harus diselesaikan sekarang.</p>
-        <a href="https://hellosehat.com/mental/gangguan-mood/relaksasi-untuk-redakan-amarah/"
-           class="learn-more"
-           target="_blank"
-           rel="noopener noreferrer">
-           Baca selengkapnya
-        </a>
-                    </div>
-                </div>
-
-                <!-- Card 2: For consultants -->
-                <div class="care-card">
-                    <h3>Rapikan Pikiran</h3>
-                    <div class="care-card-content">
-                        <p>Pikiran yang penuh wajar terjadi. Menuliskan satu hal yang dirasakan atau dipikirkan bisa membantu melihatnya lebih jelas. Tidak perlu rapi, tidak perlu panjang.</p>
-            <a href="https://www.beautynesia.id/wellness/writing-for-healing-6-cara-menulis-agar-bebas-stres-dan-kesehatan-mental-terjaga/b-297502"
-           class="learn-more"
-           target="_blank"
-           rel="noopener noreferrer">
-           Baca selengkapnya
-        </a>
-                    </div>
-                </div>
-
-                <!-- Card 3: For health plans -->
-                <div class="care-card orange">
-                    <h3>Jangan Sendiri</h3>
-                    <div class="care-card-content">
-                        <p>Berbagi cerita dengan orang yang dipercaya bisa meringankan beban. Meminta ditemani atau didengarkan bukan tanda lemah, tapi bentuk menjaga diri.</p>
-                        <a href="https://www.liputan6.com/health/read/5574231/5-manfaat-luar-biasa-bercerita-bagi-kesehatan-mental-bisa-meningkatkan-empati" class="learn-more" target="_blank" rel="noopener noreferrer">Baca selengkapnya</a>
-                    </div>
-                </div>
-            </div>
+      <div class="care-container">
+        <div class="care-header">
+          <h2>
+            Langkah Awal
+            <br />
+            Yang Bisa Kamu Ambil
+          </h2>
         </div>
+
+        <div class="care-cards">
+          <!-- Card 1: For employers -->
+          <div class="care-card">
+            <h3>Tarik Jeda</h3>
+            <div class="care-card-content">
+              <p>
+                Berhenti sebentar dari apa pun yang sedang dilakukan. Tarik
+                napas perlahan dan beri tubuhmu waktu untuk tenang. Tidak semua
+                hal harus diselesaikan sekarang.
+              </p>
+              <a
+                href="https://hellosehat.com/mental/gangguan-mood/relaksasi-untuk-redakan-amarah/"
+                class="learn-more"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Baca selengkapnya
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2: For consultants -->
+          <div class="care-card">
+            <h3>Rapikan Pikiran</h3>
+            <div class="care-card-content">
+              <p>
+                Pikiran yang penuh wajar terjadi. Menuliskan satu hal yang
+                dirasakan atau dipikirkan bisa membantu melihatnya lebih jelas.
+                Tidak perlu rapi, tidak perlu panjang.
+              </p>
+              <a
+                href="https://www.beautynesia.id/wellness/writing-for-healing-6-cara-menulis-agar-bebas-stres-dan-kesehatan-mental-terjaga/b-297502"
+                class="learn-more"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Baca selengkapnya
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 3: For health plans -->
+          <div class="care-card orange">
+            <h3>Jangan Sendiri</h3>
+            <div class="care-card-content">
+              <p>
+                Berbagi cerita dengan orang yang dipercaya bisa meringankan
+                beban. Meminta ditemani atau didengarkan bukan tanda lemah, tapi
+                bentuk menjaga diri.
+              </p>
+              <a
+                href="https://www.liputan6.com/health/read/5574231/5-manfaat-luar-biasa-bercerita-bagi-kesehatan-mental-bisa-meningkatkan-empati"
+                class="learn-more"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Baca selengkapnya
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <script>
-        // Facts Section Animation
-        const statCards = document.querySelectorAll('.stat-card');
+      // Facts Section Animation
+      const statCards = document.querySelectorAll(".stat-card");
 
-        const animateNumber = (el, target, duration = 2000) => {
-            let start = 0;
-            const increment = target / (duration / 16);
+      const animateNumber = (el, target, duration = 2000) => {
+        let start = 0;
+        const increment = target / (duration / 16);
 
-            const interval = setInterval(() => {
-                start += increment;
-                if (start >= target) {
-                    el.textContent = target + (target === 7 ? '' : '%');
-                    clearInterval(interval);
-                } else {
-                    el.textContent = Math.floor(start) + (target === 7 ? '' : '%');
-                }
-            }, 16);
-        };
+        const interval = setInterval(() => {
+          start += increment;
+          if (start >= target) {
+            el.textContent = target + (target === 7 ? "" : "%");
+            clearInterval(interval);
+          } else {
+            el.textContent = Math.floor(start) + (target === 7 ? "" : "%");
+          }
+        }, 16);
+      };
 
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const card = entry.target;
-                    const numberEl = card.querySelector('.number');
-                    const target = Number(card.dataset.target);
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const card = entry.target;
+              const numberEl = card.querySelector(".number");
+              const target = Number(card.dataset.target);
 
-                    card.classList.add('show');
-                    animateNumber(numberEl, target);
-                    observer.unobserve(card);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        statCards.forEach(card => observer.observe(card));
-
-        // Carousel Section
-        let currentIndex = 2;
-        const cards = document.querySelectorAll('.card');
-        const totalCards = cards.length;
-        const dots = document.querySelectorAll('.dot');
-
-        function updateCarousel() {
-            cards.forEach((card, index) => {
-                let position = index - currentIndex;
-                
-                if (position < -2) position += totalCards;
-                if (position > 2) position -= totalCards;
-                
-                card.setAttribute('data-position', position + 2);
-            });
-
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % totalCards;
-            updateCarousel();
-        }
-
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + totalCards) % totalCards;
-            updateCarousel();
-        }
-
-        function goToSlide(index) {
-            currentIndex = index;
-            updateCarousel();
-        }
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') prevSlide();
-            if (e.key === 'ArrowRight') nextSlide();
-        });
-
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 50) nextSlide();
-            if (touchEndX > touchStartX + 50) prevSlide();
-        }
-
-        updateCarousel();
-
-        // Hamburger Menu Functionality
-        const hamburgerMenu = document.getElementById('hamburgerMenu');
-        const sidebarNav = document.getElementById('sidebarNav');
-        const sidebarOverlay = document.getElementById('sidebarOverlay');
-        const sidebarLinks = document.querySelectorAll('.sidebar-menu-link');
-
-        function toggleSidebar() {
-            hamburgerMenu.classList.toggle('active');
-            sidebarNav.classList.toggle('active');
-            sidebarOverlay.classList.toggle('active');
-            document.body.style.overflow = sidebarNav.classList.contains('active') ? 'hidden' : '';
-        }
-
-        function closeSidebar() {
-            hamburgerMenu.classList.remove('active');
-            sidebarNav.classList.remove('active');
-            sidebarOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        hamburgerMenu.addEventListener('click', toggleSidebar);
-        sidebarOverlay.addEventListener('click', closeSidebar);
-
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                sidebarLinks.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-                setTimeout(closeSidebar, 300);
-            });
-        });
-
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
+              card.classList.add("show");
+              animateNumber(numberEl, target);
+              observer.unobserve(card);
             }
+          });
+        },
+        { threshold: 0.5 },
+      );
+
+      statCards.forEach((card) => observer.observe(card));
+
+      // Carousel Section
+      let currentIndex = 2;
+      const cards = document.querySelectorAll(".card");
+      const totalCards = cards.length;
+      const dots = document.querySelectorAll(".dot");
+
+      function updateCarousel() {
+        cards.forEach((card, index) => {
+          let position = index - currentIndex;
+
+          if (position < -2) position += totalCards;
+          if (position > 2) position -= totalCards;
+
+          card.setAttribute("data-position", position + 2);
         });
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === currentIndex);
+        });
+      }
+
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalCards;
+        updateCarousel();
+      }
+
+      function prevSlide() {
+        currentIndex = (currentIndex - 1 + totalCards) % totalCards;
+        updateCarousel();
+      }
+
+      function goToSlide(index) {
+        currentIndex = index;
+        updateCarousel();
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") prevSlide();
+        if (e.key === "ArrowRight") nextSlide();
+      });
+
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      document.addEventListener("touchstart", (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      document.addEventListener("touchend", (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      });
+
+      function handleSwipe() {
+        if (touchEndX < touchStartX - 50) nextSlide();
+        if (touchEndX > touchStartX + 50) prevSlide();
+      }
+
+      updateCarousel();
     </script>
 
-</body>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>MindCare</h3>
+          <p style="color: #999; line-height: 1.6">
+            Platform edukasi dan dukungan kesehatan mental untuk semua.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">t</a>
+            <a href="#" class="social-icon">i</a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Ruang Edukasi</a></li>
+            <li><a href="#">Panduan Self-Care</a></li>
+            <li><a href="#">Pusat Dukungan</a></li>
+            <li><a href="#">Ruang Tenang</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="#">Cerita Inspiratif</a></li>
+            <li><a href="#">Galeri Kutipan</a></li>
+            <li><a href="#">Bantuan Praktis</a></li>
+            <li><a href="#">Sudut Cerita</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Hotline Darurat</h3>
+          <ul>
+            <li><a href="tel:112">Nomor Darurat: 112</a></li>
+            <li><a href="tel:119">Sejiwa: 119</a></li>
+            <li><a href="tel:1500567">Halo Kemenkes: 1500-567</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 MindCare. Platform edukasi dan dukungan kesehatan mental
+          untuk semua.
+        </p>
+      </div>
+    </footer>
+    <script src="navbar.js"></script>
+  </body>
 </html>

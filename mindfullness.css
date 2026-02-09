@@ -5,10 +5,11 @@
 }
 
 .title {
+  margin: 0px;
+  margin-top: 80px;
   width: 100%;
   min-height: 250px;
-  margin: 0px;
-  padding: 0px;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,11 +17,15 @@
 }
 
 .font {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
+  align-items: center;
   color: white;
   font-style: normal;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Poppins", sans-serif;
 }
 .font2 {
   display: flex;
@@ -30,7 +35,7 @@
   flex-wrap: wrap;
   color: black;
   font-style: bold;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Poppins", sans-serif;
   gap: 20px;
   font-size: 40px;
 }

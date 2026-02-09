@@ -19,35 +19,35 @@
   --color-hotline-pink: #e36161;
   --color-hotline-pink-light: #fe6262;
   --color-hotline-red: #fc3737;
-  
+
   /* Background Colors */
   --color-bg-global: #f2f4ff;
-  
+
   /* Gradient Colors */
   --gradient-header: linear-gradient(135deg, #8cddf6 100%, #4752e9 100%);
-  
+
   /* Soft Pink Gradient */
   --color-pink-1: #ff9191;
   --color-pink-2: #ffcdcd;
   --color-pink-3: #ffc8c8;
   --color-pink-4: #ffe7e7;
   --gradient-pink: linear-gradient(135deg, #ff9191 0%, #ffcdcd 100%);
-  
+
   /* Blue Soft Gradient */
   --color-blue-1: #7882ff;
   --color-blue-2: #dcdeff;
   --gradient-blue: linear-gradient(135deg, #7882ff 0%, #dcdeff 100%);
-  
+
   /* Purple Quotes Gradient */
   --color-purple-1: #9389ef;
   --color-purple-2: #d9d6f3;
   --gradient-purple: linear-gradient(135deg, #9389ef 0%, #d9d6f3 100%);
-  
+
   /* Text Colors */
   --color-heading-dark: #2c3e50;
   --color-text-brown: #675151;
   --color-section-heading: #3a3a48;
-  
+
   /* Accent Colors */
   --color-checkmark: #893c3c;
   --color-decoration-line: #cdge34;
@@ -55,7 +55,7 @@
   --color-stroke-black: #000000;
   --color-stroke-blue: #4752e9;
   --color-stroke-gray: #d7d6de;
-  
+
   /* Shadow */
   --shadow-soft: 0 0 0 rgba(0, 0, 0, 0.15);
 }
@@ -64,7 +64,7 @@
    TYPOGRAPHY
    ======================================== */
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: var(--color-bg-global);
   color: var(--color-heading-dark);
   line-height: 1.6;
@@ -195,7 +195,7 @@ h4 {
 
 .mobile-menu .nav-link:hover,
 .mobile-menu .nav-link.active {
-  background: #F6F5FF;
+  background: #f6f5ff;
   color: var(--color-primary-blue);
 }
 
@@ -217,6 +217,7 @@ h4 {
 
 .main-content {
   min-height: calc(100vh - 200px);
+  margin-top: 80px;
 }
 
 /* ========================================
@@ -258,7 +259,9 @@ h4 {
   border-radius: 15px;
   padding: 30px;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
 }

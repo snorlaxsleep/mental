@@ -9,7 +9,8 @@
   width: 100%;
   min-height: 250px;
   margin: 0px;
-  padding: 0px;
+  margin-top: 80px;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +21,7 @@
   text-align: center;
   color: white;
   font-style: normal;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .box1 {

@@ -19,35 +19,35 @@
   --color-hotline-pink: #e36161;
   --color-hotline-pink-light: #fe6262;
   --color-hotline-red: #fc3737;
-  
+
   /* Background Colors */
   --color-bg-global: #f2f4ff;
-  
+
   /* Gradient Colors */
   --gradient-header: linear-gradient(135deg, #8cddf6 100%, #4752e9 100%);
-  
+
   /* Soft Pink Gradient */
   --color-pink-1: #ff9191;
   --color-pink-2: #ffcdcd;
   --color-pink-3: #ffc8c8;
   --color-pink-4: #ffe7e7;
   --gradient-pink: linear-gradient(135deg, #ff9191 0%, #ffcdcd 100%);
-  
+
   /* Blue Soft Gradient */
   --color-blue-1: #7882ff;
   --color-blue-2: #dcdeff;
   --gradient-blue: linear-gradient(135deg, #7882ff 0%, #dcdeff 100%);
-  
+
   /* Purple Quotes Gradient */
   --color-purple-1: #9389ef;
   --color-purple-2: #d9d6f3;
   --gradient-purple: linear-gradient(135deg, #9389ef 0%, #d9d6f3 100%);
-  
+
   /* Text Colors */
   --color-heading-dark: #2c3e50;
   --color-text-brown: #675151;
   --color-section-heading: #3a3a48;
-  
+
   /* Accent Colors */
   --color-checkmark: #893c3c;
   --color-decoration-line: #cdge34;
@@ -55,7 +55,7 @@
   --color-stroke-black: #000000;
   --color-stroke-blue: #4752e9;
   --color-stroke-gray: #d7d6de;
-  
+
   /* Shadow */
   --shadow-soft: 0 0 0 rgba(0, 0, 0, 0.15);
 }
@@ -64,7 +64,7 @@
    TYPOGRAPHY
    ======================================== */
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: var(--color-bg-global);
   color: var(--color-heading-dark);
   line-height: 1.6;
@@ -208,7 +208,7 @@ h4 {
 
 .mobile-menu .nav-link:hover,
 .mobile-menu .nav-link.active {
-  background: #F6F5FF;
+  background: #f6f5ff;
   color: var(--color-primary-blue);
 }
 
@@ -313,6 +313,7 @@ h4 {
    ======================================== */
 .main-content {
   background-color: var(--color-bg-global);
+  margin-top: 80px;
 }
 
 .page-header {
@@ -416,8 +417,8 @@ h4 {
 }
 
 .benefit-item {
-  background: #F6F5FF;
-  border: 2px solid #D7D6DE;
+  background: #f6f5ff;
+  border: 2px solid #d7d6de;
   padding: 1.5rem;
   border-radius: 20px;
   text-align: center;
@@ -431,7 +432,7 @@ h4 {
 
 .benefit-item i {
   font-size: 2.5rem;
-  color: #6B73FF;
+  color: #6b73ff;
   margin-bottom: 1rem;
 }
 
@@ -461,8 +462,8 @@ h4 {
 }
 
 .selfcare-tip {
-  background: #F6F5FF;
-  border: 2px solid #D7D6DE;
+  background: #f6f5ff;
+  border: 2px solid #d7d6de;
   padding: 2rem;
   border-radius: 20px;
   transition: all 0.3s ease;
@@ -475,7 +476,7 @@ h4 {
 
 .selfcare-tip i {
   font-size: 2.5rem;
-  color: #6B73FF;
+  color: #6b73ff;
   margin-bottom: 1rem;
   display: block;
 }
@@ -517,8 +518,8 @@ h4 {
 }
 
 .routine-time {
-  background: #F6F5FF;
-  border: 2px solid #D7D6DE;
+  background: #f6f5ff;
+  border: 2px solid #d7d6de;
   padding: 2rem;
   border-radius: 20px;
 }
@@ -533,7 +534,7 @@ h4 {
 }
 
 .routine-time h3 i {
-  color: #6B73FF;
+  color: #6b73ff;
   font-size: 1.2em;
 }
 
@@ -604,7 +605,7 @@ h4 {
 
 .activity-item i {
   font-size: 2rem;
-  color: #6B73FF;
+  color: #6b73ff;
 }
 
 .activity-item span {
@@ -702,8 +703,8 @@ h4 {
   gap: 1rem;
   padding: 1rem;
   margin-bottom: 0.8rem;
-  background: #F6F5FF;
-  border: 2px solid #D7D6DE;
+  background: #f6f5ff;
+  border: 2px solid #d7d6de;
   border-radius: 12px;
   text-decoration: none;
   color: var(--color-heading-dark);
@@ -717,7 +718,7 @@ h4 {
 
 .resource-item i {
   font-size: 1.3rem;
-  color: #6B73FF;
+  color: #6b73ff;
 }
 
 .resource-item span {
@@ -733,7 +734,7 @@ h4 {
   border-radius: 50px;
   border: none;
   text-decoration: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -790,43 +791,43 @@ h4 {
   .header-container {
     padding: 0.8rem 1rem;
   }
-  
+
   .header-logo {
     font-size: 1.2rem;
   }
-  
+
   .header-right {
     font-size: 1rem;
   }
-  
+
   .content-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .main-content-area {
     gap: 2rem;
   }
-  
+
   .selfcare-tips-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .benefit-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .activity-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .daily-routine {
     gap: 1.5rem;
   }
-  
+
   h1 {
     font-size: 28px;
   }
-  
+
   h2 {
     font-size: 20px;
   }
@@ -836,39 +837,39 @@ h4 {
   .container {
     padding: 0 15px;
   }
-  
+
   .header-container {
     padding: 0.6rem 1rem;
   }
-  
+
   .header-logo {
     font-size: 1rem;
   }
-  
+
   .header-right {
     font-size: 0.9rem;
   }
-  
+
   .content-section {
     padding: 1.5rem;
   }
-  
+
   .activity-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .selfcare-tips-grid {
     grid-template-columns: 1fr;
   }
-  
+
   h1 {
     font-size: 24px;
   }
-  
+
   h2 {
     font-size: 18px;
   }
-  
+
   h3 {
     font-size: 16px;
   }

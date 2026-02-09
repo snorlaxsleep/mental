@@ -1,13 +1,80 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="coping tools.css" />
+    <link rel="stylesheet" href="navbar.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coping tools</title>
   </head>
 
   <body>
+    <nav id="navbar">
+      <div class="nav-left">
+        <div class="hamburger-menu" id="hamburgerMenu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </div>
+      </div>
+      <div class="logo">
+        <img src="sapi-imup.PNG" alt="Logo MoodMoo" class="logo-icon" />
+        <span>MoodMoo</span>
+      </div>
+      <ul class="nav-links"></ul>
+      <a href="#hotline" class="cta-button">Nomor Darurat</a>
+    </nav>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="sidebar-nav" id="sidebarNav">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <span class="sidebar-logo-icon">💙</span>
+          <span>MoodMoo</span>
+        </div>
+        <p class="sidebar-tagline">Teman Baik untuk Perasaanmu</p>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="home.html" class="sidebar-menu-link">HOME</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="edukasi.html" class="sidebar-menu-link">
+            Edukasi Mental Health
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="selfcare.html" class="sidebar-menu-link">Self Care Guide</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="stories.html" class="sidebar-menu-link">Inspiring story</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#" class="sidebar-menu-link">Visual Quotes</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="coping tools.html" class="sidebar-menu-link active">
+            Coping Tools
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#" class="sidebar-menu-link">Resource Hub</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="mindfullness.html" class="sidebar-menu-link">Mindfulness</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="sudutcerita.html" class="sidebar-menu-link">Sudut Cerita</a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">©Copyright MindCare 2026</div>
+    </div>
+
     <div class="title">
       <div class="font">
         <h1>Coping Tools</h1>
@@ -65,7 +132,7 @@
       <div class="box">
         <div class="logo-left">
           <div class="mini-logo">
-            <image height="25" width="25" src="asset/Vector.svg" />
+            <img height="25" width="25" src="asset/CT.svg" />
           </div>
           <h2>Cognitive Techniques</h2>
         </div>
@@ -81,16 +148,7 @@
       <div class="box">
         <div class="logo-left">
           <div class="mini-logo">
-            <svg viewBox="0 0 64 64">
-              <circle cx="32" cy="22" r="8" />
-              <path
-                d="M16 48c0-8 8-14 16-14s16 6 16 14"
-                fill="none"
-                stroke-width="3"
-              />
-              <path d="M46 20c4 4 4 12 0 16" fill="none" stroke-width="3" />
-              <path d="M52 16c6 6 6 20 0 26" fill="none" stroke-width="3" />
-            </svg>
+            <img height="25" width="25" src="asset/PT.svg" />
           </div>
           <h2>Physical Techniques</h2>
         </div>
@@ -105,16 +163,7 @@
       <div class="box">
         <div class="logo-left">
           <div class="mini-logo">
-            <svg viewBox="0 0 64 64">
-              <circle cx="32" cy="22" r="8" />
-              <path
-                d="M16 48c0-8 8-14 16-14s16 6 16 14"
-                fill="none"
-                stroke-width="3"
-              />
-              <path d="M46 20c4 4 4 12 0 16" fill="none" stroke-width="3" />
-              <path d="M52 16c6 6 6 20 0 26" fill="none" stroke-width="3" />
-            </svg>
+            <img height="25" width="25" src="asset/BT.svg" />
           </div>
           <h2>Behavioral Techniques</h2>
         </div>
@@ -127,6 +176,54 @@
       </div>
     </div>
 
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>MindCare</h3>
+          <p style="color: #999; line-height: 1.6">
+            Platform edukasi dan dukungan kesehatan mental untuk semua.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">t</a>
+            <a href="#" class="social-icon">i</a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Ruang Edukasi</a></li>
+            <li><a href="#">Panduan Self-Care</a></li>
+            <li><a href="#">Pusat Dukungan</a></li>
+            <li><a href="#">Ruang Tenang</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="#">Cerita Inspiratif</a></li>
+            <li><a href="#">Galeri Kutipan</a></li>
+            <li><a href="#">Bantuan Praktis</a></li>
+            <li><a href="#">Sudut Cerita</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Hotline Darurat</h3>
+          <ul>
+            <li><a href="tel:112">Nomor Darurat: 112</a></li>
+            <li><a href="tel:119">Sejiwa: 119</a></li>
+            <li><a href="tel:1500567">Halo Kemenkes: 1500-567</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 MindCare. Platform edukasi dan dukungan kesehatan mental
+          untuk semua.
+        </p>
+      </div>
+    </footer>
     <script src="coping-tools.js"></script>
+    <script src="navbar.js"></script>
   </body>
 </html>

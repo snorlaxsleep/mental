@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inspiring Stories - MoodMoo</title>
     <link rel="stylesheet" href="stories.css" />
+    <link rel="stylesheet" href="navbar.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -15,55 +16,74 @@
     />
   </head>
   <body>
-    <header class="header">
-      <div class="header-container">
+    <nav id="navbar">
+      <div class="nav-left">
         <div class="hamburger-menu" id="hamburgerMenu">
-          <i class="fas fa-bars"></i>
-        </div>
-        
-        <div class="header-logo">
-          <img src="sapi.png" alt="MoodMoo" style="height: 40px; width: auto;">
-          <span>MoodMoo</span>
-        </div>
-        
-        <div class="header-right">
-          <i class="fas fa-phone-alt"></i>
-          <a href="tel:112" class="phone-number">112</a>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
         </div>
       </div>
+      <div class="logo">
+        <img src="sapi-imup.PNG" alt="Logo MoodMoo" class="logo-icon" />
+        <span>MoodMoo</span>
+      </div>
+      <ul class="nav-links"></ul>
+      <a href="#hotline" class="cta-button">Nomor Darurat</a>
+    </nav>
 
-      <!-- Mobile Menu -->
-      <nav class="mobile-menu" id="mobileMenu">
-        <div class="menu-close" id="menuClose">
-          <i class="fas fa-times"></i>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="sidebar-nav" id="sidebarNav">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <span class="sidebar-logo-icon">💙</span>
+          <span>MoodMoo</span>
         </div>
-        <ul class="nav-menu">
-          <li><a href="index.html" class="nav-link">HOME</a></li>
-          <li>
-            <a href="edukasi.html" class="nav-link">Edukasi Mental Health</a>
-          </li>
-          <li>
-            <a href="selfcare.html" class="nav-link">Self-Care Guide</a>
-          </li>
-          <li><a href="stories.html" class="nav-link active">Inspiring story</a></li>
-          <li><a href="quotes.html" class="nav-link">Visual Quotes</a></li>
-          <li><a href="coping tools.html" class="nav-link">Coping Tools</a></li>
-          <li>
-            <a href="resources.html" class="nav-link">Resource Hub</a>
-          </li>
-          <li><a href="mindfulness.html" class="nav-link">Mindfulness</a></li>
-          <li><a href="sudut-cerita.html" class="nav-link">Sudut Cerita</a></li>
-          <div class="copyright">©Copyright</div>
-        </ul>
-      </nav>
-    </header>
+        <p class="sidebar-tagline">Teman Baik untuk Perasaanmu</p>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item">
+          <a href="home.html" class="sidebar-menu-link">HOME</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="edukasi.html" class="sidebar-menu-link">
+            Edukasi Mental Health
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="selfcare.html" class="sidebar-menu-link">Self Care Guide</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="stories.html" class="sidebar-menu-link active">
+            Inspiring story
+          </a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#" class="sidebar-menu-link">Visual Quotes</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="coping tools.html" class="sidebar-menu-link">Coping Tools</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="#" class="sidebar-menu-link">Resource Hub</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="mindfullness.html" class="sidebar-menu-link">Mindfulness</a>
+        </li>
+        <li class="sidebar-menu-item">
+          <a href="sudutcerita.html" class="sidebar-menu-link">Sudut Cerita</a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">©Copyright MindCare 2026</div>
+    </div>
 
     <main class="main-content">
       <div class="page-header">
         <h1>Inspiring Stories</h1>
         <p>
-          Kisah-kisah inspiratif dari mereka yang telah melewati perjalanan pemulihan mental health.
-          Anda tidak sendiri.
+          Kisah-kisah inspiratif dari mereka yang telah melewati perjalanan
+          pemulihan mental health. Anda tidak sendiri.
         </p>
       </div>
 
@@ -78,33 +98,39 @@
               <h3>Bangkit dari Depresi: 100 Hari Transformasi</h3>
               <p class="story-meta">Sarah M • September 2024</p>
               <p class="story-text">
-                Cerita tentang bagaimana rutinitas kecil setiap hari selama 100 hari berturut-turut membawa perubahan besar. Dari merasa lelah dan lesu, kini hidup lebih bermakna.
+                Cerita tentang bagaimana rutinitas kecil setiap hari selama 100
+                hari berturut-turut membawa perubahan besar. Dari merasa lelah
+                dan lesu, kini hidup lebih bermakna.
               </p>
             </div>
           </div>
 
           <div class="story-card">
             <div class="story-icon">
-              <i class="fas fa-heart" style="color: #6c5ce7;"></i>
+              <i class="fas fa-heart" style="color: #6c5ce7"></i>
             </div>
             <div class="story-content">
               <h3>Mendukung Anak dengan Anxiety: Perspektif Orang Tua</h3>
               <p class="story-meta">Budi & Rina • September 2024</p>
               <p class="story-text">
-                Sebagai orang tua, mengalami anxiety adalah salah satu tantangan terberat. Ini adalah cerita tentang bagaimana kami belajar memberikan support system yang tepat.
+                Sebagai orang tua, mengalami anxiety adalah salah satu tantangan
+                terberat. Ini adalah cerita tentang bagaimana kami belajar
+                memberikan support system yang tepat.
               </p>
             </div>
           </div>
 
           <div class="story-card">
             <div class="story-icon">
-              <i class="fas fa-graduation-cap" style="color: #6c5ce7;"></i>
+              <i class="fas fa-graduation-cap" style="color: #6c5ce7"></i>
             </div>
             <div class="story-content">
               <h3>Mengatasi Burnout Akademik di Masa Kuliah</h3>
               <p class="story-meta">Alex R • Agustus 2024</p>
               <p class="story-text">
-                Tekanan akademik yang tinggi hampir membuat saya menyerah. Ini adalah cerita tentang bagaimana saya menemukan keseimbangan antara prestasi dan kesehatan mental.
+                Tekanan akademik yang tinggi hampir membuat saya menyerah. Ini
+                adalah cerita tentang bagaimana saya menemukan keseimbangan
+                antara prestasi dan kesehatan mental.
               </p>
             </div>
           </div>
@@ -117,20 +143,23 @@
               <h3>Membangun Mental Health Awareness di Tempat Kerja</h3>
               <p class="story-meta">Maya S • Agustus 2024</p>
               <p class="story-text">
-                Sebagai HR Manager, saya menemukan investasi mental health awareness di perusahaan. Perubahan yang terjadi melampaui ekspektasi.
+                Sebagai HR Manager, saya menemukan investasi mental health
+                awareness di perusahaan. Perubahan yang terjadi melampaui
+                ekspektasi.
               </p>
             </div>
           </div>
 
           <div class="story-card">
             <div class="story-icon">
-              <i class="fas fa-users" style="color: #6c5ce7;"></i>
+              <i class="fas fa-users" style="color: #6c5ce7"></i>
             </div>
             <div class="story-content">
               <h3>Membangun Support Group: Kekuatan Komunitas</h3>
               <p class="story-meta">Komunitas Semangat • Juli 2024</p>
               <p class="story-text">
-                Berawal dari grup WhatsApp kecil, kini kami telah membantu ratusan orang menemukan support system yang mereka butuhkan.
+                Berawal dari grup WhatsApp kecil, kini kami telah membantu
+                ratusan orang menemukan support system yang mereka butuhkan.
               </p>
             </div>
           </div>
@@ -143,7 +172,9 @@
               <h3>Art Therapy: Melukis Jalan Menuju Healing</h3>
               <p class="story-meta">Lila P • Juli 2024</p>
               <p class="story-text">
-                Ketika kata-kata tidak cukup untuk mengekspresikan perasaan, saya menemukan kuas dan cat. Art therapy membuka jalan healing yang tidak pernah saya bayangkan.
+                Ketika kata-kata tidak cukup untuk mengekspresikan perasaan,
+                saya menemukan kuas dan cat. Art therapy membuka jalan healing
+                yang tidak pernah saya bayangkan.
               </p>
             </div>
           </div>
@@ -153,40 +184,50 @@
         <section class="story-of-month">
           <h2>Story of the Month</h2>
           <div class="featured-story">
-            <h3>Dari Anxiety ke Acceptance: Perjalanan Saya Menuju Self-Love</h3>
+            <h3>
+              Dari Anxiety ke Acceptance: Perjalanan Saya Menuju Self-Love
+            </h3>
             <p class="featured-meta">Anonim • Oktober 2024</p>
             <p class="featured-text">
-              Sejak kecil, saya berjuang dengan anxiety disorder yang mengikuti saya selama bertahun-tahun akan menjadi jalan menuju self-discovery yang paling bermakna dalam hidup saya. Perjalanan ini mengajarkan saya bahwa kecukupan adalah kunci, bukan kekhawatiran.
+              Sejak kecil, saya berjuang dengan anxiety disorder yang mengikuti
+              saya selama bertahun-tahun akan menjadi jalan menuju
+              self-discovery yang paling bermakna dalam hidup saya. Perjalanan
+              ini mengajarkan saya bahwa kecukupan adalah kunci, bukan
+              kekhawatiran.
             </p>
           </div>
         </section>
 
         <!-- Guidelines Section -->
         <section class="guidelines-section">
-          <h2><i class="fas fa-triangle"></i> Panduan Berbagi Cerita</h2>
+          <h2>
+            <i class="fas fa-triangle"></i>
+            Panduan Berbagi Cerita
+          </h2>
           <div class="guidelines-grid">
             <div class="guideline-item guideline-blue">
               <h4>Privasi Terjaga</h4>
               <p>
-                Privasi terjaga dengan setiap anonim. Identitas pribadi akan selalu dirahasiakan
+                Privasi terjaga dengan setiap anonim. Identitas pribadi akan
+                selalu dirahasiakan
               </p>
             </div>
             <div class="guideline-item guideline-purple">
               <h4>Safe Space Kami Ciptakan Bersama</h4>
-              <p>
-                Menciptakan ruang yang aman dan support untuk semua orang
-              </p>
+              <p>Menciptakan ruang yang aman dan support untuk semua orang</p>
             </div>
             <div class="guideline-item guideline-pink">
               <h4>Saling Mendukung</h4>
               <p>
-                Setiap cerita akan dimoderasi untuk memastikan konten yang positif dan mendukung
+                Setiap cerita akan dimoderasi untuk memastikan konten yang
+                positif dan mendukung
               </p>
             </div>
             <div class="guideline-item guideline-orange">
               <h4>Privasi terjaga dengan Berbagi Anonim</h4>
               <p>
-                Anda dapat berbagi secara anonim, kemudian perjalanan dan pesan harapan yang inspiratif
+                Anda dapat berbagi secara anonim, kemudian perjalanan dan pesan
+                harapan yang inspiratif
               </p>
             </div>
           </div>
@@ -194,80 +235,53 @@
       </div>
     </main>
 
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-content">
-          <div class="footer-section">
-            <h3><img src="sapi.png" alt="MoodMoo" style="height: 24px; width: auto; vertical-align: middle; margin-right: 8px;"> MoodMoo</h3>
-            <p>Platform edukasi dan dukungan kesehatan mental untuk semua.</p>
-          </div>
-          <div class="footer-section">
-            <h4>Quick Links</h4>
-            <div class="quick-links">
-              <a href="#">Ruang edukasi</a>
-              <a href="#">Panduan Self-Care</a>
-              <a href="#">Ruang Tenang</a>
-            </div>
-          </div>
-          <div class="footer-section">
-            <h4>Support</h4>
-            <div class="support-links">
-              <a href="#">Cerita Inspiratif</a>
-              <a href="#">Galeri Kutipan</a>
-              <a href="#">Bantuan Praktis</a>
-              <a href="#">Sudut Cerita</a>
-            </div>
-          </div>
-          <div class="footer-section">
-            <h4>Hotline Darurat</h4>
-            <div class="hotline-info">
-              <p><strong>Nomor Darurat :</strong> 112</p>
-              <p><strong>Sejiwa :</strong> 119</p>
-              <p><strong>Halo Kemenkes :</strong> 1500-887</p>
-              <p><strong>Yayasan Pulih :</strong> +62 811 8438 833</p>
-            </div>
+    <footer>
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>MindCare</h3>
+          <p style="color: #999; line-height: 1.6">
+            Platform edukasi dan dukungan kesehatan mental untuk semua.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">t</a>
+            <a href="#" class="social-icon">i</a>
           </div>
         </div>
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#">Ruang Edukasi</a></li>
+            <li><a href="#">Panduan Self-Care</a></li>
+            <li><a href="#">Pusat Dukungan</a></li>
+            <li><a href="#">Ruang Tenang</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li><a href="#">Cerita Inspiratif</a></li>
+            <li><a href="#">Galeri Kutipan</a></li>
+            <li><a href="#">Bantuan Praktis</a></li>
+            <li><a href="#">Sudut Cerita</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Hotline Darurat</h3>
+          <ul>
+            <li><a href="tel:112">Nomor Darurat: 112</a></li>
+            <li><a href="tel:119">Sejiwa: 119</a></li>
+            <li><a href="tel:1500567">Halo Kemenkes: 1500-567</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>
+          &copy; 2026 MindCare. Platform edukasi dan dukungan kesehatan mental
+          untuk semua.
+        </p>
       </div>
     </footer>
-
-    <script src="../js/script.js"></script>
-    <script>
-      // Hamburger Menu Toggle
-      const hamburgerMenu = document.getElementById('hamburgerMenu');
-      const mobileMenu = document.getElementById('mobileMenu');
-      const menuClose = document.getElementById('menuClose');
-      const navLinks = document.querySelectorAll('.mobile-menu .nav-link');
-
-      hamburgerMenu.addEventListener('click', function() {
-        mobileMenu.classList.add('active');
-      });
-
-      menuClose.addEventListener('click', function() {
-        mobileMenu.classList.remove('active');
-      });
-
-      navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          mobileMenu.classList.remove('active');
-        });
-      });
-
-      // Close menu when clicking outside
-      document.addEventListener('click', function(event) {
-        if (!event.target.closest('.header') && !event.target.closest('.mobile-menu')) {
-          mobileMenu.classList.remove('active');
-        }
-      });
-
-      // Responsive hamburger menu
-      function handleResize() {
-        if (window.innerWidth > 768) {
-          mobileMenu.classList.remove('active');
-        }
-      }
-
-      window.addEventListener('resize', handleResize);
-    </script>
+    <script src="navbar.js"></script>
   </body>
 </html>

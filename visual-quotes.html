@@ -1,16 +1,15 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visual Quotes - MoodMoo</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="mindfullness.css" />
     <link rel="stylesheet" href="navbar.css" />
-
-    <title>Mindfullness</title>
+    <link rel="stylesheet" href="visual-quotes-style.css" />
   </head>
   <body>
     <nav id="navbar">
@@ -53,13 +52,15 @@
           </a>
         </li>
         <li class="sidebar-menu-item">
-          <a href="selfcare.html" class="sidebar-menu-link">Self Care Guide</a>
+          <a href="selfcare.html" class="sidebar-menu-link">
+            Self Care Guide
+          </a>
         </li>
         <li class="sidebar-menu-item">
           <a href="stories.html" class="sidebar-menu-link">Inspiring story</a>
         </li>
         <li class="sidebar-menu-item">
-          <a href="visual-quotes.html" class="sidebar-menu-link">Visual Quotes</a>
+          <a href="visual-quotes.html" class="sidebar-menu-link active">Visual Quotes</a>
         </li>
         <li class="sidebar-menu-item">
           <a href="coping tools.html" class="sidebar-menu-link">Coping Tools</a>
@@ -68,9 +69,7 @@
           <a href="resource-hub.html" class="sidebar-menu-link">Resource Hub</a>
         </li>
         <li class="sidebar-menu-item">
-          <a href="mindfullness.html" class="sidebar-menu-link active">
-            Mindfulness
-          </a>
+          <a href="mindfullness.html" class="sidebar-menu-link">Mindfulness</a>
         </li>
         <li class="sidebar-menu-item">
           <a href="sudutcerita.html" class="sidebar-menu-link">Sudut Cerita</a>
@@ -79,59 +78,85 @@
       <div class="sidebar-footer">©Copyright MindCare 2026</div>
     </div>
 
-    <div class="title">
-      <div class="font">
-        <h1>Mindfulness & Relaxation</h1>
-        <h2>
-          Temukan ketenangan dan kedamaian melalui praktik mindfulness dan
-          teknik relaksasi yang terbukti efektif.
-        </h2>
-      </div>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Visual Quotes</h1>
+      <p>Koleksi kata-kata inspiratif dan motivasi untuk mendukung perjalanan kesehatan mental Anda.</p>
+    </section>
 
-    <a
-      href="https://open.spotify.com/playlist/61sQJd38xiRyRtFYGwSS8Z?si=dc398b82d64c4aad"
-      class="box"
-    >
-      <img src="asset/jeda rasa.svg" class="thumbnail" alt="Jeda Rasa" />
-      <div class="box-text">
-        <h3>JEDA RASA</h3>
-        <p>Playlist</p>
-      </div>
-    </a>
+    <!-- Filter Buttons -->
+    <section class="filter-section">
+      <button class="filter-btn active">Semua</button>
+      <button class="filter-btn">Motivasi</button>
+      <button class="filter-btn">Self love</button>
+      <button class="filter-btn">Healing</button>
+      <button class="filter-btn">Kekuatan</button>
+      <button class="filter-btn">Harapan</button>
+    </section>
 
-    <a
-      href="https://open.spotify.com/playlist/37i9dQZF1DXat64iiQuzjo?si=61c22afa8260415a"
-      class="box"
-    >
-      <img src="asset/peluk diri.svg" class="thumbnail" alt="Peluk Diri" />
-      <div class="box-text">
-        <h3>PELUK DIRI</h3>
-        <p>Playlist</p>
+    <!-- Quotes Grid -->
+    <main class="quotes-container">
+      <div class="quote-card">
+        <div class="quote-icon">💬</div>
+        <p class="quote-text">"Anda lebih kuat dari yang Anda pikirkan dan lebih mampu dari yang Anda bayangkan."</p>
+        <p class="quote-author">- Unknown</p>
       </div>
-    </a>
 
-    <a
-      href="https://open.spotify.com/show/43ILnAhQzZjw9Mhdy225jg?si=a4b0cfc597b6489e"
-      class="box"
-    >
-      <img src="asset/psikologid.svg" class="thumbnail" alt="Psikologid" />
-      <div class="box-text">
-        <h3>Psikologid</h3>
-        <p>Podcast</p>
+      <div class="quote-card">
+        <div class="quote-icon">💙</div>
+        <p class="quote-text">"Mencintai diri sendiri bukanlah vanitas, melainkan kebutuhan."</p>
+        <p class="quote-author">- Unknown</p>
       </div>
-    </a>
 
-    <a
-      href="https://open.spotify.com/show/2wT3ZpOhS3HOJ3LRGZZzs4?si=a554b7ae96f14f8d"
-      class="box"
-    >
-      <img src="asset/well being.svg" class="thumbnail" alt="Uwellbeing.fm" />
-      <div class="box-text">
-        <h3>Uwellbeing.fm</h3>
-        <p>Podcast</p>
+      <div class="quote-card">
+        <div class="quote-icon">🌱</div>
+        <p class="quote-text">"Penyembuhan bukanlah tentang kembali ke siapa Anda dulu, tetapi tentang menerima siapa Anda sekarang."</p>
+        <p class="quote-author">- Unknown</p>
       </div>
-    </a>
+
+      <div class="quote-card">
+        <div class="quote-icon">🎯</div>
+        <p class="quote-text">"Anda tidak harus menjadi sempurna. Anda hanya perlu menjadi diri sendiri yang terbaik."</p>
+        <p class="quote-author">- Unknown</p>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-icon">☀️</div>
+        <p class="quote-text">"Meskipun hari ini terasa berat, besok selalu membawa kemungkinan baru."</p>
+        <p class="quote-author">- Unknown</p>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-icon">⭐</div>
+        <p class="quote-text">"Rasa syukur mengubah apa yang kita miliki menjadi cukup."</p>
+        <p class="quote-author">- Unknown</p>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-icon">🕐</div>
+        <p class="quote-text">"Progress, bukan perfection. Setiap langkah kecil adalah kemenangan."</p>
+        <p class="quote-author">- Unknown</p>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-icon">💝</div>
+        <p class="quote-text">"Jadilah sahabat terbaik untuk diri sendiri. Anda layak mendapat cinta itu."</p>
+        <p class="quote-author">- Unknown</p>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-icon">📘</div>
+        <p class="quote-text">"Tidak apa-apa untuk tidak baik-baik saja. Tidak apa-apa untuk butuh bantuan."</p>
+        <p class="quote-author">- Unknown</p>
+      </div>
+
+      <div class="quote-card quote-card-large">
+        <p class="quote-text">"Kesehatan mental bukanlah tujuan, melainkan sebuah proses."</p>
+        <p class="quote-author">- Mental Health Advocate</p>
+      </div>
+    </main>
+
+    <!-- Footer -->
     <footer>
       <div class="footer-content">
         <div class="footer-section">

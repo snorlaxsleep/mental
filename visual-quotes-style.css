@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ebf0 100%);
+    color: #333;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #6b7fdb 0%, #5a6ec9 100%);
+    color: white;
+    text-align: center;
+    padding: 140px 20px 60px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.95;
+}
+
+/* Filter Section */
+.filter-section {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 12px 28px;
+    border: 2px solid #6b7fdb;
+    background: white;
+    color: #6b7fdb;
+    border-radius: 25px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: #6b7fdb;
+    color: white;
+}
+
+/* Quotes Container */
+.quotes-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.quote-card {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.quote-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+}
+
+.quote-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.quote-text {
+    color: #2c3e50;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.quote-author {
+    color: #888;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.quote-card-large {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ebf0 100%);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .quotes-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .quote-card-large {
+        grid-column: span 1;
+    }
+    
+    .filter-section {
+        justify-content: center;
+    }
+
+    .hero {
+        padding: 120px 20px 40px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+}
